@@ -3,6 +3,7 @@ import { Route, Routes } from 'react-router-dom'
 import Login from "./routes/Auth/Login"
 import Profile from "./routes/Home/Profile"
 import Icon from "./assets/v.png"
+import Options from "./components/Options"
 
 const App = () => {
   return (
@@ -20,7 +21,23 @@ const App = () => {
         </div>
       } />
 
-      <Route path='/home/profile' element={<Profile />} />
+
+
+
+
+      <Route path='/home/profile' element={<div style={{
+        display: "flex",
+        padding: 8,
+        minHeight: "100vh",
+        gap: 8
+      }}>
+        <Options />
+        <Profile />
+      </div>} />
+
+
+
+
 
       <Route path='*' element={<div style={{ gap: 16 }} className='auth_body'>
 

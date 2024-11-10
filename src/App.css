@@ -149,3 +149,15 @@ body {
         border-color: transparent
     }
 }
+
+
+
+.oBox{
+    background: linear-gradient(to right, var(--g36), var(--g32));
+    border-radius: 8px;
+    border-top: 1px solid var(--g53);
+    border-left: 1px solid var(--g53);
+    border-right: 1px solid var(--g48);
+    border-bottom: 1px solid var(--g48);
+    box-shadow: 0px 16px 16px rgba(0, 0, 0, 0.32);
+}
