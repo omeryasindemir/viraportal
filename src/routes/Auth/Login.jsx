@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import Icon from "../assets/v.png"
+import Icon from "../../assets/v.png"
 
 const Login = () => {
 
