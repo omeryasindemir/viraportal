@@ -214,3 +214,15 @@ body {
     font-size: 14px;
     color: var(--g96);
 }
+
+.pp_option{
+    height: 32px;
+    width: 128px;
+    border: 1px solid var(--g48);
+    border-radius: 8px;
+    background: linear-gradient(to right, var(--g36), var(--g32));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: -16px;
+}

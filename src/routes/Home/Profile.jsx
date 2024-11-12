@@ -54,7 +54,7 @@ const Profile = () => {
             </div>
           </div>
 
-          <div style={{display: "flex", gap: 16, marginTop: 12}}>
+          <div style={{ display: "flex", gap: 16, marginTop: 12 }}>
             <div>0 <span className='des_text'>Takip</span></div>
             <div>0 <span className='des_text'>Takipçi</span></div>
           </div>
@@ -64,7 +64,19 @@ const Profile = () => {
 
       </div>
 
-      <div>profile bottom</div>
+      <div style={{paddingLeft: 32, paddingRight: 32}}>
+        <div style={{
+          marginTop: 96,
+          borderTop: "1px solid var(--g48)",
+          display: "flex",
+          justifyContent: "center",
+          gap: 32
+        }}>
+          <div className='pp_option'><span className='click'>Paylaşımlar</span></div>
+          <div className='pp_option'><span className='click'>Beğeniler</span></div>
+          <div className='pp_option'><span className='click'>Envanter</span></div>
+        </div>
+      </div>
 
     </div>
   )
