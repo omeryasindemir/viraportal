@@ -7,9 +7,8 @@ const Options = () => {
   const navigate = useNavigate()
 
   return (
-    <div className='oBox' style={{
+    <div className='oBox main_opt_bar' style={{
       minWidth: 320,
-      display: "flex",
       flexDirection: "column",
       justifyContent: "space-between"
     }}>

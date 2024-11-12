@@ -4,6 +4,7 @@ import Login from "./routes/Auth/Login"
 import Profile from "./routes/Home/Profile"
 import Icon from "./assets/v.png"
 import Options from "./components/Options"
+import OptionsMobile from './components/OptionsMobile'
 
 const App = () => {
   return (
@@ -32,6 +33,7 @@ const App = () => {
         gap: 8
       }}>
         <Options />
+        <OptionsMobile/>
         <Profile />
       </div>} />
 

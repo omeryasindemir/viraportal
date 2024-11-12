@@ -226,3 +226,54 @@ body {
     justify-content: center;
     margin-top: -16px;
 }
+
+.main_opt_bar{
+    display: flex;
+}
+
+.main_opt_bar_mobile{
+    display: none;
+}
+
+.profile_top_section_user_info{
+    margin-top: 83px;
+}
+
+.profile_top_section{
+    padding-left: 88px;
+}
+
+.pp_options_3{
+    margin-top: 96px;
+}
+
+@media (max-width: 1032px) {
+    .main_opt_bar{
+        display: none;
+    }
+
+    .main_opt_bar_mobile{
+        display: flex;
+    }
+}
+
+
+@media (max-width: 700px) {
+    .profile_top_section{
+        flex-direction: column;
+        padding-left: 0;
+        align-items: center;
+    }
+
+    .profile_top_section_user_info{
+        margin-top: 0px;
+        margin-left: -24px;
+    }
+
+
+    .pp_options_3{
+        margin-top: 48px;
+    }
+
+
+}

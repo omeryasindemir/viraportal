@@ -12,7 +12,7 @@ const Profile = () => {
         backgroundRepeat: "no-repeat"
       }} className='pp_banner'></div>
 
-      <div style={{ display: "flex", gap: 32, paddingLeft: 83, marginTop: -72 }}>
+      <div className='profile_top_section' style={{ display: "flex", gap: 32, marginTop: -72 }}>
 
 
 
@@ -41,7 +41,7 @@ const Profile = () => {
           </div>
         </div>
 
-        <div style={{ marginTop: 83 }}>
+        <div className='profile_top_section_user_info'>
           <div style={{ display: "flex", gap: 16, alignItems: "center" }}>
             <div style={{ marginRight: 24 }} className='midium_text'>viraportal</div>
             <button style={{
@@ -64,13 +64,12 @@ const Profile = () => {
 
       </div>
 
-      <div style={{paddingLeft: 32, paddingRight: 32}}>
-        <div style={{
-          marginTop: 96,
+      <div style={{paddingLeft: 16, paddingRight: 16}}>
+        <div className='pp_options_3' style={{
           borderTop: "1px solid var(--g48)",
           display: "flex",
           justifyContent: "center",
-          gap: 32
+          gap: 16
         }}>
           <div className='pp_option'><span className='click'>Paylaşımlar</span></div>
           <div className='pp_option'><span className='click'>Beğeniler</span></div>
