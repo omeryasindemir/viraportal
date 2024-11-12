@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import Icon from "../../assets/v.png"
 import { useNavigate } from 'react-router-dom'
+import { authLogin } from '../../server/req/auth'
+import authToken from "../../server/authToken"
 
 const Login = () => {
 
@@ -13,11 +15,28 @@ const Login = () => {
 
 
 
-  const LoginSubmit = () => {
+  const LoginSubmit = async () => {
     console.log({
       email: email,
       password: password
     })
+
+    const reqData = {
+      email: email,
+      password: password
+    }
+
+    try {
+      const data = await authLogin(reqData)
+      console.log(data)
+      localStorage.setItem(authToken, data.csrfToken)
+
+      console.log("Login Success!")
+
+    } catch (error) {
+      console.log("Login Error!")
+    }
+
   }
 
 

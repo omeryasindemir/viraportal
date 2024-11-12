@@ -1,24 +1,40 @@
 import React, { useState } from 'react'
 import Icon from "../../assets/v.png"
 import { useNavigate } from 'react-router-dom'
+import { authRegister } from '../../server/req/auth'
 
 const Register = () => {
 
   const navigate = useNavigate()
 
-
+  const [username, setusername] = useState("")
   const [email, setemail] = useState("")
   const [password, setpassword] = useState("")
 
   const [isPassSee, setisPassSee] = useState(false)
 
 
-
-  const LoginSubmit = () => {
+  const LoginSubmit = async () => {
     console.log({
+      username: username,
       email: email,
       password: password
     })
+
+    const reqData = {
+      username: username,
+      email: email,
+      password: password
+    }
+
+    try {
+      const data = await authRegister(reqData)
+      console.log(data)
+      console.log("Register Success!")
+    } catch (error) {
+      console.log("Register Error!")
+    }
+
   }
 
 
@@ -46,9 +62,9 @@ const Register = () => {
         marginTop: 48,
         gap: 16
       }}>
-        <input onChange={e => setemail(e.target.value)} className='inp' type="text" name="" id="" placeholder='Kullanıcı Adı' />
+        <input onChange={e => setusername(e.target.value)} className='inp' type="text" name="" id="" placeholder='Kullanıcı Adı' />
         <input onChange={e => setemail(e.target.value)} className='inp' type="text" name="" id="" placeholder='Email' />
-        <div style={{position: "relative"}}>
+        <div style={{ position: "relative" }}>
           <input style={{
             letterSpacing: password.length > 0 && !isPassSee && 4
           }} onChange={e => setpassword(e.target.value)} className='inp' type={isPassSee ? "text" : "password"} name="" id="" placeholder='Parola' />
@@ -64,7 +80,7 @@ const Register = () => {
             alignItems: "center",
             justifyContent: "center"
           }}>
-            <i onClick={() => setisPassSee(!isPassSee)} style={{color: "var(--g64)"}} className={!isPassSee ? "bi bi-eye-slash click" : "bi bi-eye click"}></i>
+            <i onClick={() => setisPassSee(!isPassSee)} style={{ color: "var(--g64)" }} className={!isPassSee ? "bi bi-eye-slash click" : "bi bi-eye click"}></i>
           </div>
         </div>
       </div>
