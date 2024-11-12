@@ -2,9 +2,10 @@ import React, { useState } from 'react'
 import Icon from "../../assets/v.png"
 import { useNavigate } from 'react-router-dom'
 
-const Login = () => {
+const Register = () => {
 
   const navigate = useNavigate()
+
 
   const [email, setemail] = useState("")
   const [password, setpassword] = useState("")
@@ -36,7 +37,7 @@ const Login = () => {
           height: 83,
           width: 83
         }} src={Icon} alt="" />
-        <div className="midium_text">Giriş Yap</div>
+        <div className="midium_text">Hesap Oluştur!</div>
       </div>
 
       <div style={{
@@ -45,6 +46,7 @@ const Login = () => {
         marginTop: 48,
         gap: 16
       }}>
+        <input onChange={e => setemail(e.target.value)} className='inp' type="text" name="" id="" placeholder='Kullanıcı Adı' />
         <input onChange={e => setemail(e.target.value)} className='inp' type="text" name="" id="" placeholder='Email' />
         <div style={{position: "relative"}}>
           <input style={{
@@ -71,7 +73,7 @@ const Login = () => {
       <div style={{
         marginTop: 32
       }}>
-        <button onClick={() => LoginSubmit()} className='Btn click'>Giriş Yap</button>
+        <button onClick={() => LoginSubmit()} className='Btn click'>Hesap Oluştur</button>
       </div>
 
 
@@ -84,10 +86,10 @@ const Login = () => {
       }}>YA DA</div>
 
 
-      <div onClick={() => navigate("/auth/register")} className='click' style={{ textAlign: "center", paddingBottom: 24 }}>Hesap oluştur!</div>
+      <div onClick={() => navigate("/auth/login")} className='click' style={{ textAlign: "center", paddingBottom: 24 }}>Giriş yap!</div>
 
     </div>
   )
 }
 
-export default Login
+export default Register

@@ -5,6 +5,7 @@ import Profile from "./routes/Home/Profile"
 import Icon from "./assets/v.png"
 import Options from "./components/Options"
 import OptionsMobile from './components/OptionsMobile'
+import Register from './routes/Auth/Register'
 
 const App = () => {
   return (
@@ -22,7 +23,11 @@ const App = () => {
         </div>
       } />
 
-
+      <Route path='/auth/register' element={
+        <div className="auth_body">
+          <Register />
+        </div>
+      } />
 
 
 
@@ -33,7 +38,7 @@ const App = () => {
         gap: 8
       }}>
         <Options />
-        <OptionsMobile/>
+        <OptionsMobile />
         <Profile />
       </div>} />
 
