@@ -64,12 +64,14 @@ const Profile = () => {
 
       </div>
 
-      <div style={{paddingLeft: 16, paddingRight: 16}}>
+      <div style={{paddingLeft: 16, paddingRight: 16, display: "flex", justifyContent: "center"}}>
         <div className='pp_options_3' style={{
           borderTop: "1px solid var(--g48)",
           display: "flex",
           justifyContent: "center",
-          gap: 16
+          gap: 16,
+          width: "100%",
+          maxWidth: 960
         }}>
           <div className='pp_option'><span className='click'>Paylaşımlar</span></div>
           <div className='pp_option'><span className='click'>Beğeniler</span></div>
