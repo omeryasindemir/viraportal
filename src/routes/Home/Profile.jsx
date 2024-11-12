@@ -50,7 +50,7 @@ const Profile = () => {
               width: 128
             }} className='Btn click'>Profili Düzenle</button>
             <div>
-              <i class="bi bi-gear click"></i>
+              <i className="bi bi-gear click"></i>
             </div>
           </div>
 

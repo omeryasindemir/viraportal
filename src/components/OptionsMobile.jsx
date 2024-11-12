@@ -23,42 +23,42 @@ const OptionsMobile = () => {
 
           <div onClick={() => navigate("/home/home")} className='optsOpt click'>
             <div style={{ display: "flex", gap: 16 }}>
-              <i class="bi bi-house-door"></i>
+              <i className="bi bi-house-door"></i>
             </div>
             
           </div>
 
           <div onClick={() => navigate("/home/profile")}  className='optsOpt click'>
             <div style={{ display: "flex", gap: 16 }}>
-              <i class="bi bi-person"></i>
+              <i className="bi bi-person"></i>
             </div>
             
           </div>
 
           <div onClick={() => navigate("/home/chat")}  className='optsOpt click'>
             <div style={{ display: "flex", gap: 16 }}>
-              <i class="bi bi-chat"></i>
+              <i className="bi bi-chat"></i>
             </div>
             
           </div>
 
           <div onClick={() => navigate("/home/apps")}  className='optsOpt click'>
             <div style={{ display: "flex", gap: 16 }}>
-              <i class="bi bi-controller"></i>
+              <i className="bi bi-controller"></i>
             </div>
             
           </div>
 
           <div onClick={() => navigate("/home/wiki")}  className='optsOpt click'>
             <div style={{ display: "flex", gap: 16 }}>
-              <i class="bi bi-info-circle"></i>
+              <i className="bi bi-info-circle"></i>
             </div>
             
           </div>
 
           <div onClick={() => navigate("/home/offer")}  className='optsOpt click'>
             <div style={{ display: "flex", gap: 16 }}>
-              <i class="bi bi-pen"></i>
+              <i className="bi bi-pen"></i>
             </div>
             
           </div>
@@ -73,7 +73,7 @@ const OptionsMobile = () => {
           background: "linear-gradient(to right, var(--light-red), var(--red))",
           height: 32,
           width: 32
-        }} className='Btn click'><i class="bi bi-door-open"></i></button>
+        }} className='Btn click'><i className="bi bi-door-open"></i></button>
       </div>
 
     </div>

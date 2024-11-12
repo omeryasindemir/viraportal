@@ -1,18 +1,27 @@
+import authToken from "../authToken";
 import baseUrl from "../env"
 
-// GET EXAMPLE
-// export const getPosts = async () => {
-//   try {
-//     const response = await fetch(`${BASE_URL}/posts`);
-//     if (!response.ok) {
-//       throw new Error('Veri alınamadı');
-//     }
-//     return await response.json();
-//   } catch (error) {
-//     console.error("GET posts hatası:", error);
-//     throw error;
-//   }
-// };
+// Auth
+export const authMe = async () => {
+  console.log(localStorage.getItem(authToken))
+  try {
+    const response = await fetch(`${baseUrl}/users/me`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'csrf-token': localStorage.getItem(authToken),
+      },
+      credentials: 'include'
+    });
+    if (!response.ok) {
+      throw new Error('Error!');
+    }
+    return await response.json();
+  } catch (error) {
+    console.error("Error!", error);
+    throw error;
+  }
+};
 
 // Register
 export const authRegister = async (data) => {

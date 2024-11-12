@@ -28,50 +28,50 @@ const Options = () => {
 
           <div onClick={() => navigate("/home/home")} className='optsOpt click'>
             <div style={{ display: "flex", gap: 16 }}>
-              <i class="bi bi-house-door"></i>
+              <i className="bi bi-house-door"></i>
               <div>Ana Sayfa</div>
             </div>
-            <i class="bi bi-caret-right"></i>
+            <i className="bi bi-caret-right"></i>
           </div>
 
           <div onClick={() => navigate("/home/profile")} style={{ marginTop: 32 }} className='optsOpt click'>
             <div style={{ display: "flex", gap: 16 }}>
-              <i class="bi bi-person"></i>
+              <i className="bi bi-person"></i>
               <div>Profil</div>
             </div>
-            <i class="bi bi-caret-right"></i>
+            <i className="bi bi-caret-right"></i>
           </div>
 
           <div onClick={() => navigate("/home/chat")} style={{ marginTop: 32 }} className='optsOpt click'>
             <div style={{ display: "flex", gap: 16 }}>
-              <i class="bi bi-chat"></i>
+              <i className="bi bi-chat"></i>
               <div>Sohbet</div>
             </div>
-            <i class="bi bi-caret-right"></i>
+            <i className="bi bi-caret-right"></i>
           </div>
 
           <div onClick={() => navigate("/home/apps")} style={{ marginTop: 32 }} className='optsOpt click'>
             <div style={{ display: "flex", gap: 16 }}>
-              <i class="bi bi-controller"></i>
+              <i className="bi bi-controller"></i>
               <div>Uygulamalar</div>
             </div>
-            <i class="bi bi-caret-right"></i>
+            <i className="bi bi-caret-right"></i>
           </div>
 
           <div onClick={() => navigate("/home/wiki")} style={{ marginTop: 32 }} className='optsOpt click'>
             <div style={{ display: "flex", gap: 16 }}>
-              <i class="bi bi-info-circle"></i>
+              <i className="bi bi-info-circle"></i>
               <div>Wiki</div>
             </div>
-            <i class="bi bi-caret-right"></i>
+            <i className="bi bi-caret-right"></i>
           </div>
 
           <div onClick={() => navigate("/home/offer")} style={{ marginTop: 32 }} className='optsOpt click'>
             <div style={{ display: "flex", gap: 16 }}>
-              <i class="bi bi-pen"></i>
+              <i className="bi bi-pen"></i>
               <div>Öneriler</div>
             </div>
-            <i class="bi bi-caret-right"></i>
+            <i className="bi bi-caret-right"></i>
           </div>
 
         </div>

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import Login from "./routes/Auth/Login"
 import Profile from "./routes/Home/Profile"
@@ -6,8 +6,27 @@ import Icon from "./assets/v.png"
 import Options from "./components/Options"
 import OptionsMobile from './components/OptionsMobile'
 import Register from './routes/Auth/Register'
+import baseUrl from './server/env'
+import { authMe } from './server/req/auth'
 
 const App = () => {
+
+
+  useEffect(() => {
+    const tokenControl = async () => {
+      try {
+        const data = await authMe()
+        console.log(data)
+        console.log("Auth Success!")
+      } catch (error) {
+        console.log("Auth Error!")
+      }
+    }
+
+    tokenControl()
+  },[])
+
+
   return (
     <Routes>
 
@@ -57,7 +76,7 @@ const App = () => {
           fontSize: 48,
           fontWeight: 600
         }}>404</div>
-        {/* <div class="typing-demo">Burada görülecek bir şey yok gibi duruyor...</div> */}
+        {/* <div className="typing-demo">Burada görülecek bir şey yok gibi duruyor...</div> */}
       </div>} />
 
     </Routes>
