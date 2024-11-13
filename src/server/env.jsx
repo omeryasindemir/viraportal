@@ -1,3 +1,3 @@
-const baseUrl = "http://46.202.129.34:3001"
+const baseUrl = "https://viraportal.xyz"
 
 export default baseUrl
