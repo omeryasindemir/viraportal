@@ -1,10 +1,34 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Icon from "../assets/v.png"
 import { useNavigate } from 'react-router-dom'
+import { authLogout } from '../server/req/auth'
+import Loading from './Loading'
 
 const Options = () => {
 
   const navigate = useNavigate()
+
+  const [isLoading, setisLoading] = useState(false)
+
+
+  const handleLogout = async () => {
+    try {
+      const data = await authLogout()
+      console.log(data)
+      console.log("Logout Success!")
+
+      setisLoading(true)
+      
+      setTimeout(() => {
+        navigate("/auth/login")
+        window.location.reload()
+      }, 640);
+
+    } catch (error) {
+      console.log("Logout Error!")
+    }
+  }
+
 
   return (
     <div className='oBox main_opt_bar' style={{
@@ -12,6 +36,11 @@ const Options = () => {
       flexDirection: "column",
       justifyContent: "space-between"
     }}>
+
+      {
+        isLoading && <Loading/>
+      }
+
       <div>
         <div style={{
           display: "flex",
@@ -80,7 +109,7 @@ const Options = () => {
       <div style={{
         padding: 16
       }}>
-        <button style={{
+        <button onClick={() => handleLogout()} style={{
           background: "linear-gradient(to right, var(--light-red), var(--red))"
         }} className='Btn click'>Çıkış Yap</button>
       </div>

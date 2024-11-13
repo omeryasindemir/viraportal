@@ -40,6 +40,7 @@ const Login = () => {
       
       setTimeout(() => {
         navigate("/home/profile")
+        window.location.reload()
       }, 640);
 
 

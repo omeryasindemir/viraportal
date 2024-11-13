@@ -23,6 +23,29 @@ export const authMe = async () => {
   }
 };
 
+
+// Logout
+export const authLogout = async () => {
+  try {
+    const response = await fetch(`${baseUrl}/auth/logout`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        'csrf-token': localStorage.getItem(authToken),
+      },
+      credentials: 'include'
+    });
+    if (!response.ok) {
+      throw new Error('Error!');
+    }
+    return await response.json();
+  } catch (error) {
+    console.error("Error!", error);
+    throw error;
+  }
+};
+
+
 // Register
 export const authRegister = async (data) => {
   try {
