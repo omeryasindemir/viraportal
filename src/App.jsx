@@ -8,6 +8,7 @@ import OptionsMobile from './components/OptionsMobile'
 import Register from './routes/Auth/Register'
 import baseUrl from './server/env'
 import { authMe } from './server/req/auth'
+import Loading from './components/Loading'
 
 const App = () => {
 
@@ -56,6 +57,7 @@ const App = () => {
         minHeight: "100vh",
         gap: 8
       }}>
+        <Loading/>
         <Options />
         <OptionsMobile />
         <Profile />
