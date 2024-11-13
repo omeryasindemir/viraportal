@@ -120,11 +120,11 @@ const Profile = ({ userData, isOther }) => {
         console.log(data)
         console.log("Profile Picture Change Success!")
 
-         setisLoading(true)
+        setisLoading(true)
 
-         setTimeout(() => { 
-           window.location.reload()
-         }, 640);
+        setTimeout(() => {
+          window.location.reload()
+        }, 640);
 
       } catch (error) {
         console.log("Profile Picture Change Error!")
@@ -198,12 +198,14 @@ const Profile = ({ userData, isOther }) => {
 
         <div style={{ position: "relative" }}>
           <div className='pp_rank_info_box'>
-            {/* <img className='click pp_crown' style={{
-              height: 32,
-              position: "absolute",
-              left: 64,
-              top: 32
-            }} src={Crown} alt="" /> */}
+            {
+              !userData?.profilepicture && <img className='click pp_crown' style={{
+                height: 32,
+                position: "absolute",
+                left: 64,
+                top: 32
+              }} src={Crown} alt="" />
+            }
             {/* <div className='rank_info'>Yabancı</div> */}
           </div>
           <div style={{
