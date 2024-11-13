@@ -206,6 +206,14 @@ const Profile = ({ userData, isOther }) => {
                 top: 32
               }} src={Crown} alt="" />
             }
+            {
+              !otherUserData?.profilepicture && <img className='click pp_crown' style={{
+                height: 32,
+                position: "absolute",
+                left: 64,
+                top: 32
+              }} src={Crown} alt="" />
+            }
             {/* <div className='rank_info'>Yabancı</div> */}
           </div>
           <div style={{
@@ -218,7 +226,12 @@ const Profile = ({ userData, isOther }) => {
             justifyContent: "center",
             alignItems: "center"
           }}>
-            <img style={{ height: 196, width: 196 }} src={userData?.profilepicture ? `${baseUrl}/images/avatars/${userData?.profilepicture}` : "https://i.pinimg.com/236x/d4/06/6d/d4066df9414e37e47739a84418971f36.jpg"} alt="" />
+            {
+              !isOther && <img style={{ height: 196, width: 196 }} src={userData?.profilepicture ? `${baseUrl}/images/avatars/${userData?.profilepicture}` : "https://i.pinimg.com/236x/d4/06/6d/d4066df9414e37e47739a84418971f36.jpg"} alt="" />
+            }
+            {
+              isOther && <img style={{ height: 196, width: 196 }} src={otherUserData?.profilepicture ? `${baseUrl}/images/avatars/${otherUserData?.profilepicture}` : "https://i.pinimg.com/236x/d4/06/6d/d4066df9414e37e47739a84418971f36.jpg"} alt="" />
+            }
           </div>
 
           {
