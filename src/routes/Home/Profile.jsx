@@ -177,7 +177,7 @@ const Profile = ({ userData, isOther }) => {
             </div>
 
             <div style={{ marginTop: 16, display: "flex", justifyContent: "space-between" }}>
-              <button onClick={() => { setisPassword(false); setisEditing(false) }} style={{ height: 32, width: 128, background: "linear-gradient(to right, var(--light-red), var(--red))" }} className='Btn click'>Vazgeç</button>
+              <button onClick={() => { setisPassword(false); setisEditing(false); setuserPassword("") }} style={{ height: 32, width: 128, background: "linear-gradient(to right, var(--light-red), var(--red))" }} className='Btn click'>Vazgeç</button>
               <button onClick={() => handleEditProfile()} style={{ height: 32, width: 128 }} className='Btn click'>Devam Et</button>
             </div>
 
