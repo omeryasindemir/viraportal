@@ -1,10 +1,33 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Icon from "../assets/v.png"
 import { useNavigate } from 'react-router-dom'
+import Loading from './Loading'
+import { authLogout } from '../server/req/auth'
 
 const OptionsMobile = () => {
 
   const navigate = useNavigate()
+
+  const [isLoading, setisLoading] = useState(false)
+
+
+  const handleLogout = async () => {
+    try {
+      const data = await authLogout()
+      console.log(data)
+      console.log("Logout Success!")
+
+      setisLoading(true)
+      
+      setTimeout(() => {
+        navigate("/auth/login")
+        window.location.reload()
+      }, 640);
+
+    } catch (error) {
+      console.log("Logout Error!")
+    }
+  }
 
   return (
     <div className='oBox main_opt_bar_mobile' style={{
@@ -16,6 +39,11 @@ const OptionsMobile = () => {
       bottom: 8,
       height: 64
     }}>
+
+      {
+        isLoading && <Loading/>
+      }
+
       <div>
 
 
@@ -69,7 +97,7 @@ const OptionsMobile = () => {
       <div style={{
         padding: 16
       }}>
-        <button style={{
+        <button onClick={() => handleLogout()} style={{
           background: "linear-gradient(to right, var(--light-red), var(--red))",
           height: 32,
           width: 32
