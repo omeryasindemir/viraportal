@@ -22,3 +22,24 @@ export const userManage = async (data) => {
     throw error;
   }
 };
+
+// User Manage Profile Picture
+export const userManagePP = async (data) => {
+  try {
+    const response = await fetch(`${baseUrl}/users/me/manage/profilepicture`, {
+      method: 'POST',
+      headers: {
+        'csrf-token': localStorage.getItem(authToken)
+      },
+      credentials: 'include',
+      body: data,
+    });
+    if (!response.ok) {
+      throw new Error('Error!');
+    }
+    return await response.json();
+  } catch (error) {
+    console.error("Error!", error);
+    throw error;
+  }
+};

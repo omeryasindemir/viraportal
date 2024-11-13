@@ -2,7 +2,9 @@ import React, { useEffect, useState } from 'react'
 import Crown from "../../assets/crown.png"
 import { useNavigate, useParams } from 'react-router-dom'
 import { authOtherUserDetails } from '../../server/req/auth'
-import { userManage } from '../../server/req/user'
+import { userManage, userManagePP } from '../../server/req/user'
+import Loading from "../../components/Loading"
+import baseUrl from '../../server/env'
 
 const Profile = ({ userData, isOther }) => {
 
@@ -100,8 +102,43 @@ const Profile = ({ userData, isOther }) => {
     setisEditing(false)
   }
 
+
+  const [filePP, setfilePP] = useState(null)
+
+  const handleFileChange = async (event) => {
+    const selectedFilePP = event.target.files[0]
+    setfilePP(selectedFilePP)
+
+    if (selectedFilePP) {
+      const formData = new FormData()
+      formData.append("profilepicture", selectedFilePP)
+
+      console.log(formData.get('profilepicture'));
+
+      try {
+        const data = userManagePP(formData)
+        console.log(data)
+        console.log("Profile Picture Change Success!")
+
+         setisLoading(true)
+
+         setTimeout(() => { 
+           window.location.reload()
+         }, 640);
+
+      } catch (error) {
+        console.log("Profile Picture Change Error!")
+      }
+    }
+  }
+
   return (
     <div style={{ width: "100%" }}>
+
+      {
+        isLoading && <Loading />
+      }
+
 
       {
         isPassword && <div style={{
@@ -139,7 +176,7 @@ const Profile = ({ userData, isOther }) => {
             </div>
 
             <div style={{ marginTop: 16, display: "flex", justifyContent: "space-between" }}>
-              <button onClick={() => {setisPassword(false); setisEditing(false)}} style={{ height: 32, width: 128, background: "linear-gradient(to right, var(--light-red), var(--red))" }} className='Btn click'>Vazgeç</button>
+              <button onClick={() => { setisPassword(false); setisEditing(false) }} style={{ height: 32, width: 128, background: "linear-gradient(to right, var(--light-red), var(--red))" }} className='Btn click'>Vazgeç</button>
               <button onClick={() => handleEditProfile()} style={{ height: 32, width: 128 }} className='Btn click'>Devam Et</button>
             </div>
 
@@ -179,8 +216,42 @@ const Profile = ({ userData, isOther }) => {
             justifyContent: "center",
             alignItems: "center"
           }}>
-            <img style={{ height: 196, width: 196 }} src={"https://i.pinimg.com/236x/d4/06/6d/d4066df9414e37e47739a84418971f36.jpg"} alt="" />
+            <img style={{ height: 196, width: 196 }} src={userData?.profilepicture ? `${baseUrl}/images/avatars/${userData?.profilepicture}` : "https://i.pinimg.com/236x/d4/06/6d/d4066df9414e37e47739a84418971f36.jpg"} alt="" />
           </div>
+
+          {
+            !isOther && <div className='click' style={{
+              height: 196,
+              width: 196,
+              overflow: "hidden",
+              borderRadius: "50%",
+              border: "1px solid var(--g53)",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              backgroundColor: "rgba(0,0,0,0.16)",
+              position: "absolute",
+              left: 0,
+              top: 0
+            }}>
+              <input onChange={handleFileChange} style={{
+                height: 196,
+                width: 196,
+                overflow: "hidden",
+                borderRadius: "50%",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                position: "absolute",
+                left: 0,
+                top: 0,
+                opacity: 0,
+                cursor: "pointer"
+              }} type="file" name="" id="" />
+              <i style={{ fontSize: 24 }} className="bi bi-pen"></i>
+            </div>
+          }
+
         </div>
 
         <div className='profile_top_section_user_info'>
