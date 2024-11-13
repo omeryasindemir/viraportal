@@ -142,6 +142,7 @@ const Profile = ({ userData, isOther }) => {
 
       {
         isPassword && <div style={{
+          zIndex: 999999,
           position: "fixed",
           left: "50%",
           top: "50%",
