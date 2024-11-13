@@ -198,12 +198,12 @@ const Profile = ({ userData, isOther }) => {
 
         <div style={{ position: "relative" }}>
           <div className='pp_rank_info_box'>
-            <img className='click pp_crown' style={{
+            {/* <img className='click pp_crown' style={{
               height: 32,
               position: "absolute",
               left: 64,
               top: 32
-            }} src={Crown} alt="" />
+            }} src={Crown} alt="" /> */}
             {/* <div className='rank_info'>Yabancı</div> */}
           </div>
           <div style={{
