@@ -86,3 +86,27 @@ export const authLogin = async (data) => {
     throw error;
   }
 };
+
+
+
+
+// Other User Details
+export const authOtherUserDetails = async (otherUsername) => {
+  try {
+    const response = await fetch(`${baseUrl}/users/@${otherUsername}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'csrf-token': localStorage.getItem(authToken),
+      },
+      credentials: 'include'
+    });
+    if (!response.ok) {
+      throw new Error('Error!');
+    }
+    return await response.json();
+  } catch (error) {
+    console.error("Error!", error);
+    throw error;
+  }
+};

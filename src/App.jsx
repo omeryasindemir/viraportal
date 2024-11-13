@@ -16,6 +16,8 @@ const App = () => {
 
   const [isAuth, setisAuth] = useState(false)
 
+  const [userData, setuserData] = useState("")
+
 
   useEffect(() => {
     const tokenControl = async () => {
@@ -23,6 +25,8 @@ const App = () => {
         const data = await authMe()
         console.log(data)
         console.log("Auth Success!")
+
+        setuserData(data)
 
         setisAuth(true)
 
@@ -89,7 +93,20 @@ const App = () => {
         }}>
           <Options />
           <OptionsMobile />
-          <Profile />
+          <Profile userData={userData} isOther={false} />
+        </div>} />
+      }
+
+      {
+        isAuth && <Route path='/users/:otherUsername' element={<div style={{
+          display: "flex",
+          padding: 8,
+          minHeight: "100vh",
+          gap: 8
+        }}>
+          <Options />
+          <OptionsMobile />
+          <Profile userData={userData} isOther={true} />
         </div>} />
       }
 

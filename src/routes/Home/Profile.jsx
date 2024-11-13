@@ -1,7 +1,44 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Crown from "../../assets/crown.png"
+import { useNavigate, useParams } from 'react-router-dom'
+import { authOtherUserDetails } from '../../server/req/auth'
 
-const Profile = () => {
+const Profile = ({ userData, isOther }) => {
+
+  const { otherUsername } = useParams()
+
+  const navigate = useNavigate()
+
+
+  const [otherUserData, setotherUserData] = useState("")
+
+
+  useEffect(() => {
+    if (isOther) {
+
+      if (otherUsername == userData?.username) {
+        navigate("/home/profile")
+      } else {
+        const getOtherUserDetails = async () => {
+          try {
+            const data = await authOtherUserDetails(otherUsername)
+            console.log(data)
+            console.log("Get Other User Details Success!")
+
+            setotherUserData(data)
+
+          } catch (error) {
+            console.log("Get Other User Details Error!")
+          }
+        }
+
+        getOtherUserDetails()
+      }
+
+
+    }
+  }, [])
+
   return (
     <div style={{ width: "100%" }}>
 
@@ -43,7 +80,7 @@ const Profile = () => {
 
         <div className='profile_top_section_user_info'>
           <div style={{ display: "flex", gap: 16, alignItems: "center" }}>
-            <div style={{ marginRight: 24 }} className='midium_text'>viraportal</div>
+            <div style={{ marginRight: 24 }} className='midium_text'>{isOther ? otherUserData?.username : userData?.username}</div>
             <button style={{
               background: "linear-gradient(to right, var(--g64), var(--g53))",
               height: 32,
@@ -64,7 +101,7 @@ const Profile = () => {
 
       </div>
 
-      <div style={{paddingLeft: 16, paddingRight: 16, display: "flex", justifyContent: "center"}}>
+      <div style={{ paddingLeft: 16, paddingRight: 16, display: "flex", justifyContent: "center" }}>
         <div className='pp_options_3' style={{
           borderTop: "1px solid var(--g48)",
           display: "flex",
