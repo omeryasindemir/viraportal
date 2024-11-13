@@ -207,7 +207,7 @@ const Profile = ({ userData, isOther }) => {
               }} src={Crown} alt="" />
             }
             {
-              !otherUserData?.profilepicture && <img className='click pp_crown' style={{
+              isOther && !otherUserData?.profilepicture && <img className='click pp_crown' style={{
                 height: 32,
                 position: "absolute",
                 left: 64,
