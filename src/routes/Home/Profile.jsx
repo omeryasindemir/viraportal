@@ -317,7 +317,7 @@ const Profile = ({ userData, isOther }) => {
           }
 
           {
-            !isEditing && <div className='des_text' style={{ marginTop: 16 }}>{userData?.biography}</div>
+            !isEditing && <div className='des_text' style={{ marginTop: 16 }}>{isOther ? otherUserData?.biography : userData?.biography}</div>
           }
 
         </div>
