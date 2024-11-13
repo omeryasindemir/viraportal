@@ -1,7 +1,7 @@
 import React from 'react'
 import Loader from "../assets/loader.svg"
 
-const Loading = () => {
+const Loading = ({message}) => {
   return (
     <div style={{
         position: "fixed",
@@ -16,9 +16,17 @@ const Loading = () => {
         width: 64,
         borderRadius: 8,
         marginLeft: -32,
-        marginTop: -32
+        marginTop: -32,
+        zIndex: 999999999
     }}>
+
         <img style={{height: 32, width: 32}} src={Loader} alt="" />
+        {
+          message && <div style={{
+            position: "absolute",
+            textAlign: "center"
+          }}>{message}</div>
+        }
     </div>
   )
 }

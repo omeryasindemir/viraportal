@@ -3,6 +3,7 @@ import Icon from "../../assets/v.png"
 import { useNavigate } from 'react-router-dom'
 import { authLogin } from '../../server/req/auth'
 import authToken from "../../server/authToken"
+import Loading from '../../components/Loading'
 
 const Login = () => {
 
@@ -12,6 +13,8 @@ const Login = () => {
   const [password, setpassword] = useState("")
 
   const [isPassSee, setisPassSee] = useState(false)
+
+  const [isLoading, setisLoading] = useState(false)
 
 
 
@@ -33,6 +36,17 @@ const Login = () => {
 
       console.log("Login Success!")
 
+      setisLoading(true)
+      
+      setTimeout(() => {
+        navigate("/home/profile")
+      }, 640);
+
+
+      
+      
+
+
     } catch (error) {
       console.log("Login Error!")
     }
@@ -42,6 +56,10 @@ const Login = () => {
 
   return (
     <div className='tBox'>
+
+      {
+        isLoading && <Loading/>
+      }
 
       <div style={{
         display: "flex",

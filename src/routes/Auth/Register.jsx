@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import Icon from "../../assets/v.png"
 import { useNavigate } from 'react-router-dom'
 import { authRegister } from '../../server/req/auth'
+import Loading from '../../components/Loading'
 
 const Register = () => {
 
@@ -13,6 +14,7 @@ const Register = () => {
 
   const [isPassSee, setisPassSee] = useState(false)
 
+  const [isLoading, setisLoading] = useState(false)
 
   const LoginSubmit = async () => {
     console.log({
@@ -31,6 +33,14 @@ const Register = () => {
       const data = await authRegister(reqData)
       console.log(data)
       console.log("Register Success!")
+
+
+      setisLoading(true)
+
+      setTimeout(() => {
+        navigate("/auth/login")
+      }, 640);
+
     } catch (error) {
       console.log("Register Error!")
     }
@@ -40,6 +50,10 @@ const Register = () => {
 
   return (
     <div className='tBox'>
+
+      {
+        isLoading && <Loading />
+      }
 
       <div style={{
         display: "flex",

@@ -57,7 +57,6 @@ const App = () => {
         minHeight: "100vh",
         gap: 8
       }}>
-        <Loading/>
         <Options />
         <OptionsMobile />
         <Profile />
