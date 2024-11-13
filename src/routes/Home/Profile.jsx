@@ -13,6 +13,16 @@ const Profile = ({ userData, isOther }) => {
   const [otherUserData, setotherUserData] = useState("")
 
 
+  const [isEditing, setisEditing] = useState(false)
+
+
+
+
+  const [userBio, setuserBio] = useState("")
+
+
+
+
   useEffect(() => {
     if (isOther) {
 
@@ -38,6 +48,15 @@ const Profile = ({ userData, isOther }) => {
 
     }
   }, [])
+
+
+  const handleEditProfile = () => {
+    console.log("saved!")
+
+    console.log(userBio)
+
+    setisEditing(false)
+  }
 
   return (
     <div style={{ width: "100%" }}>
@@ -81,14 +100,31 @@ const Profile = ({ userData, isOther }) => {
         <div className='profile_top_section_user_info'>
           <div style={{ display: "flex", gap: 16, alignItems: "center" }}>
             <div style={{ marginRight: 24 }} className='midium_text'>{isOther ? otherUserData?.username : userData?.username}</div>
-            <button style={{
-              background: "linear-gradient(to right, var(--g64), var(--g53))",
-              height: 32,
-              width: 128
-            }} className='Btn click'>Profili Düzenle</button>
-            <div>
-              <i className="bi bi-gear click"></i>
-            </div>
+            {
+              !isOther && <button onClick={() => isEditing ? handleEditProfile() : setisEditing(true)} style={{
+                background: "linear-gradient(to right, var(--g64), var(--g53))",
+                height: 32,
+                width: 128
+              }} className='Btn click'>{isEditing ? "Kaydet" : "Profili Düzenle"}</button>
+            }
+            {
+              isOther && <button style={{
+                // background: "linear-gradient(to right, var(--g64), var(--g53))",
+                height: 32,
+                width: 96
+              }} className='Btn click'>Takip Et</button>
+            }
+            {
+              !isOther && <div>
+                <i className="bi bi-gear click"></i>
+              </div>
+            }
+            {
+              isOther && <div>
+                <i className="bi bi-chat click"></i>
+              </div>
+            }
+
           </div>
 
           <div style={{ display: "flex", gap: 16, marginTop: 12 }}>
@@ -96,7 +132,20 @@ const Profile = ({ userData, isOther }) => {
             <div>0 <span className='des_text'>Takipçi</span></div>
           </div>
 
-          <div className='des_text' style={{ marginTop: 16 }}>Hey! Ben viraportal kullanıyorum.</div>
+          {
+            isEditing && <input style={{
+              marginTop: 16,
+              height: 32,
+              border: "1px solid var(--g48)",
+              paddingLeft: 8,
+              paddingRight: 8
+            }} onChange={(e) => setuserBio(e.target.value)} className='inp' type="text" name="" id="" placeholder={userData?.biography} />
+          }
+
+          {
+            !isEditing && <div className='des_text' style={{ marginTop: 16 }}>{userData?.biography}</div>
+          }
+
         </div>
 
       </div>
