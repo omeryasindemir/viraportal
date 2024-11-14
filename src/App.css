@@ -3,6 +3,7 @@
 
 :root {
     --g16: #161616;
+    --g20: #202020;
     --g24: #242424;
     --g32: #323232;
     --g36: #363636;
@@ -247,6 +248,10 @@ body {
     margin-top: 96px;
 }
 
+.chat_bottom_bar{
+    margin-right: 24px;
+}
+
 @media (max-width: 1032px) {
     .main_opt_bar{
         display: none;
@@ -254,6 +259,11 @@ body {
 
     .main_opt_bar_mobile{
         display: flex;
+    }
+
+    .chat_bottom_bar{
+        padding-bottom: 56px;
+        margin-right: 0px;
     }
 }
 

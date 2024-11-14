@@ -10,6 +10,7 @@ import baseUrl from './server/env'
 import { authMe } from './server/req/auth'
 import Loading from './components/Loading'
 import Home from "./routes/Home/Home"
+import Chat from "./routes/Home/Chat"
 
 const App = () => {
 
@@ -121,6 +122,19 @@ const App = () => {
           <Options />
           <OptionsMobile />
           <Home />
+        </div>} />
+      }
+
+      {
+        isAuth && <Route path='/home/chat' element={<div style={{
+          display: "flex",
+          padding: 8,
+          minHeight: "100vh",
+          gap: 8
+        }}>
+          <Options />
+          <OptionsMobile />
+          <Chat />
         </div>} />
       }
 
