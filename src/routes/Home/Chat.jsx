@@ -47,8 +47,8 @@ const Chat = () => {
           alignItems: "center",
           gap: 32
         }}>
-          <div><i class="bi bi-search click"></i></div>
-          <div><i class="bi bi-three-dots-vertical click"></i></div>
+          <div><i className="bi bi-search click"></i></div>
+          <div><i className="bi bi-three-dots-vertical click"></i></div>
         </div>
       </div>
       <div className='chat_bottom_bar' style={{ margin: 16, marginLeft: 24, position: "relative", display: "flex", alignItems: "center", gap: 24 }}>
