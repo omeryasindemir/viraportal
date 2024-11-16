@@ -12,6 +12,7 @@ import Loading from './components/Loading'
 import Home from "./routes/Home/Home"
 import Chat from "./routes/Home/Chat"
 import WebSocketComponent from './demo/WebSocketComponent'
+import authToken from './server/authToken'
 
 const App = () => {
 
@@ -19,6 +20,51 @@ const App = () => {
   const [isAuth, setisAuth] = useState(false)
 
   const [userData, setuserData] = useState("")
+
+
+  const [socket, setSocket] = useState(null);
+
+  useEffect(() => {
+    const token = document.cookie
+      .split("; ")
+      .find((row) => row.startsWith("token="))
+      ?.split("=")[1];
+
+    const csrfToken = localStorage.getItem(authToken);
+
+    if (!token || !csrfToken) {
+      console.error("Token veya CSRF Token bulunamadı.");
+      return;
+    }
+
+    // WebSocket bağlantısı oluştur
+    const ws = new WebSocket(
+      `ws://localhost:3001/ws/${token}/${csrfToken}`
+    );
+
+    ws.onopen = () => {
+      console.log("WebSocket bağlantısı açıldı.");
+      setSocket(ws);
+    };
+
+    ws.onmessage = (event) => {
+      console.log("Mesaj alındı:", event.data);
+    };
+
+    ws.onerror = (error) => {
+      console.error("WebSocket hatası:", error);
+    };
+
+    ws.onclose = () => {
+      console.log("WebSocket bağlantısı kapandı.");
+      setSocket(null);
+    };
+
+    // Cleanup: Bileşen unmount olursa bağlantıyı kapat
+    return () => {
+      ws.close();
+    };
+  }, []);
 
 
   useEffect(() => {
@@ -135,7 +181,7 @@ const App = () => {
         }}>
           <Options />
           <OptionsMobile />
-          <WebSocketComponent />
+          <Chat />
         </div>} />
       }
 

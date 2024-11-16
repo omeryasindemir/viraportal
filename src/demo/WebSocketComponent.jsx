@@ -13,7 +13,7 @@ const WebSocketComponent = () => {
     const csrfToken = localStorage.getItem(authToken);
 
     if (token && csrfToken) {
-      const wsUrl = `wss://localhost:3001/ws?token=${token}&csrf=${csrfToken}`;
+      const wsUrl = `ws://localhost:3001/ws/${token}/${csrfToken}`;
       socketRef.current = new WebSocket(wsUrl);
 
       socketRef.current.onopen = () => {
