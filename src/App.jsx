@@ -11,6 +11,7 @@ import { authMe } from './server/req/auth'
 import Loading from './components/Loading'
 import Home from "./routes/Home/Home"
 import Chat from "./routes/Home/Chat"
+import WebSocketComponent from './demo/WebSocketComponent'
 
 const App = () => {
 
@@ -134,7 +135,7 @@ const App = () => {
         }}>
           <Options />
           <OptionsMobile />
-          <Chat />
+          <WebSocketComponent />
         </div>} />
       }
 
