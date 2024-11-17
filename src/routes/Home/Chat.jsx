@@ -5,7 +5,7 @@ import { authOtherUserDetails } from '../../server/req/auth'
 import ChatBg from "../../assets/chat_bg.png"
 import { useNavigate, useParams } from 'react-router-dom'
 
-const Chat = () => {
+const Chat = ({ userData }) => {
 
   const { chatUsername } = useParams()
 
@@ -161,30 +161,64 @@ const Chat = () => {
             </div>
           </div>
 
-          <div style={{
+          <div className='chat_main' style={{
             flex: 1,
             marginTop: 8,
             borderRadius: 8,
             position: "relative"
           }}>
-            <div
-              style={{
-                position: "absolute",
-                height: "100%",
-                width: "100%",
-                left: 0,
-                top: 0,
-                background: "url('https://png.pngtree.com/png-vector/20221123/ourmid/pngtree-geometric-doodle-pattern-seamless-png-image_6477514.png')",
-                opacity: 0.08
-              }}
-            ></div>
 
-            <div>
-              {
-                allMessages && allMessages.map((item, index) => (
-                  <div key={index}>{item.message}</div>
-                ))
-              }
+
+            <div style={{ height: "100%", overflowY: "scroll", paddingRight: 4, flexDirection: "column-reverse", display: "flex" }}>
+              <div
+                style={{
+                  position: "absolute",
+                  height: "100%",
+                  width: "100%",
+                  left: 0,
+                  top: 0,
+                  background: "url('https://png.pngtree.com/png-vector/20221123/ourmid/pngtree-geometric-doodle-pattern-seamless-png-image_6477514.png')",
+                  opacity: 0.08,
+                  pointerEvents: "none"
+                }}
+              ></div>
+
+              <div>
+                {
+                  allMessages && allMessages.map((item, index) => {
+
+                    const date = new Date(item.createdAt)
+
+                    const timeString = date.toLocaleTimeString("tr-TR", {
+                      hour: "2-digit",
+                      minute: "2-digit",
+                    });
+
+                    return <div style={{
+                      display: "flex",
+                      justifyContent: item.sender == userData._id ? "end" : "start"
+                    }} key={index}>
+
+                      <div style={{ display: "flex", flexDirection: "column", alignItems: item.sender == userData._id ? "end" : "start", marginBottom: 8 }}>
+                        <div style={{ paddingBottom: item.sender == userData._id && 24 }} className={item.sender == userData._id ? "myMes Mes" : "urMes Mes"}>{item.message}</div>
+                        {
+                          item.sender == userData._id && <div style={{
+                            height: 24,
+                            width: 24,
+                            borderRadius: "50%",
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            paddingRight: 2,
+                            marginTop: -22
+                          }}><i className="bi bi-check-all"></i></div>
+                        }
+                        <div style={{marginTop: 2, paddingLeft: 4}} className='des_text'>{timeString}</div>
+                      </div>
+                    </div>
+                  })
+                }
+              </div>
             </div>
 
           </div>

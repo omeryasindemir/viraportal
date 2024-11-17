@@ -183,7 +183,7 @@ const App = () => {
         }}>
           <Options />
           <OptionsMobile />
-          <Chat />
+          <Chat userData={userData} />
         </div>} />
       }
 
@@ -196,7 +196,7 @@ const App = () => {
         }}>
           <Options />
           <OptionsMobile />
-          <Chat />
+          <Chat userData={userData} />
         </div>} />
       }
 
