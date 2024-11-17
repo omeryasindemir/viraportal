@@ -64,10 +64,10 @@ const Register = () => {
         marginTop: 32
       }}>
         <img style={{
-          height: 83,
-          width: 83
+          height: 128,
+          width: 128
         }} src={Icon} alt="" />
-        <div className="midium_text">Hesap Oluştur!</div>
+        <div style={{marginTop: -32}} className="midium_text">Hesap Oluştur!</div>
       </div>
 
       <div style={{
