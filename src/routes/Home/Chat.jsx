@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { chatSend } from '../../server/req/chat'
+import React, { useEffect, useState } from 'react'
+import { chatGet, chatSend } from '../../server/req/chat'
 import { authOtherUserDetails } from '../../server/req/auth'
 
 
@@ -55,6 +55,24 @@ const Chat = () => {
       console.log("Get Other User Details Error!")
     }
   }
+
+
+
+  useEffect(() => {
+    if (isReady) {
+      const getMessages = async () => {
+        try {
+          const mesData = chatGet(userID)
+          console.log(mesData)
+          console.log("Get Messages Success!")
+        } catch (error) {
+          console.log("Get Messages Error!")
+        }
+      }
+
+      getMessages()
+    }
+  }, [isReady])
 
 
 

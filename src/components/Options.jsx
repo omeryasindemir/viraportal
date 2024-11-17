@@ -56,7 +56,7 @@ const Options = () => {
           <div style={{marginTop: -32}} className='midium_text'>viraportal</div>
         </div>
 
-        <div style={{ marginTop: 48, paddingLeft: 48, paddingRight: 48 }}>
+        <div style={{ marginTop: 83, paddingLeft: 48, paddingRight: 48 }}>
 
           <div onClick={() => navigate("/home/home")} className='optsOpt click'>
             <div style={{ display: "flex", gap: 16 }}>
