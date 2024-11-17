@@ -24,6 +24,10 @@ const App = () => {
 
   const [socket, setSocket] = useState(null);
 
+
+  const [isMesGet, setisMesGet] = useState("")
+
+
   useEffect(() => {
     const token = document.cookie
       .split("; ")
@@ -41,7 +45,7 @@ const App = () => {
 
     // WebSocket bağlantısı oluştur
     const ws = new WebSocket(
-      `wss://viraportal.com/api/ws/${token}/${csrfToken}`
+      `ws://localhost:3001/ws/${token}/${csrfToken}`
     );
 
     ws.onopen = () => {
@@ -51,6 +55,7 @@ const App = () => {
 
     ws.onmessage = (event) => {
       console.log("Mesaj alındı:", event.data);
+      setisMesGet(event.data)
     };
 
     ws.onerror = (error) => {
@@ -183,7 +188,7 @@ const App = () => {
         }}>
           <Options />
           <OptionsMobile />
-          <Chat userData={userData} />
+          <Chat userData={userData} isMesGet={isMesGet} />
         </div>} />
       }
 
@@ -196,7 +201,7 @@ const App = () => {
         }}>
           <Options />
           <OptionsMobile />
-          <Chat userData={userData} />
+          <Chat userData={userData} isMesGet={isMesGet} />
         </div>} />
       }
 

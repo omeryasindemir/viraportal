@@ -5,7 +5,10 @@ import { authOtherUserDetails } from '../../server/req/auth'
 import ChatBg from "../../assets/chat_bg.png"
 import { useNavigate, useParams } from 'react-router-dom'
 
-const Chat = ({ userData }) => {
+const Chat = ({ userData, isMesGet }) => {
+
+
+
 
   const { chatUsername } = useParams()
 
@@ -23,6 +26,12 @@ const Chat = ({ userData }) => {
   const [mesChange, setmesChange] = useState(0)
 
   const navigate = useNavigate()
+
+
+  useEffect(() => {
+    console.log("geldi")
+    setmesChange(mesChange + 1)
+  },[isMesGet])
 
 
   const sendMessage = async () => {
