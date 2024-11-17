@@ -20,6 +20,8 @@ const Chat = () => {
 
   const [allMessages, setallMessages] = useState("")
 
+  const [mesChange, setmesChange] = useState(0)
+
   const navigate = useNavigate()
 
 
@@ -38,6 +40,9 @@ const Chat = () => {
       const data = await chatSend(obj, userID)
       console.log(data)
       console.log("message Success!")
+
+      setmesChange(mesChange + 1)
+      setmessage("")
 
     } catch (error) {
       console.log("message Error!")
@@ -70,7 +75,7 @@ const Chat = () => {
       console.log(chatUsername)
       setmessageTo(chatUsername)
     }
-  },[chatUsername])
+  }, [chatUsername])
 
 
 
@@ -78,7 +83,7 @@ const Chat = () => {
     if (messageTo && chatUsername) {
       getUserID()
     }
-  },[messageTo])
+  }, [messageTo])
 
 
 
@@ -99,7 +104,7 @@ const Chat = () => {
 
       getMessages()
     }
-  }, [isReady])
+  }, [isReady, mesChange])
 
 
 
@@ -107,7 +112,7 @@ const Chat = () => {
     <div style={{ display: "flex", flexDirection: "column", gap: 16, width: "100%", maxWidth: 640 }} className='tBox'>
       <div>Devam etmek için konuşmak istediğin kişinin kullanıcı adını gir!</div>
       <input onChange={(e) => setmessageTo(e.target.value)} style={{ marginTop: 16 }} className='inp' type="text" name="" id="" placeholder='Kullanıcı Adı' />
-      <button onClick={() => {navigate(`/home/chat/${messageTo}`); window.location.reload()}} className='Btn click'>Başla</button>
+      <button onClick={() => { navigate(`/home/chat/${messageTo}`); window.location.reload() }} className='Btn click'>Başla</button>
     </div>
   )
 
@@ -188,7 +193,11 @@ const Chat = () => {
             <div><i className="bi bi-emoji-smile click"></i></div>
             <div><i className="bi bi-plus-lg click"></i></div>
             <div style={{ width: "100%" }}>
-              <input onChange={(e) => setmessage(e.target.value)} style={{
+              <input value={message} onKeyDown={(e) => {
+                if (e.key === "Enter" && message !== "") {
+                  sendMessage()
+                }
+              }} onChange={(e) => setmessage(e.target.value)} style={{
                 background: "linear-gradient(to right, var(--g24), var(--g20))"
               }} className='inp' type="text" name="" id="" placeholder='Bir mesaj gönder!' />
               <div style={{
