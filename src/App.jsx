@@ -191,14 +191,18 @@ const App = () => {
       <Route path='*' element={<div style={{ gap: 16 }} className='auth_body'>
 
         <img style={{
-          height: 128,
-          width: 128
+          height: 144,
+          width: 144
         }} src={Icon} alt="" />
         <div style={{
-          marginTop: -48,
-          fontSize: 48,
-          fontWeight: 600
-        }}>404</div>
+          marginTop: -144,
+          fontSize: 83,
+          fontWeight: 600,
+          display: "flex", gap: 96
+        }}>
+          <span>4</span>
+          <span>4</span>
+        </div>
         {/* <div className="typing-demo">Burada görülecek bir şey yok gibi duruyor...</div> */}
       </div>} />
 

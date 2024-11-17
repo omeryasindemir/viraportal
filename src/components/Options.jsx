@@ -45,12 +45,15 @@ const Options = () => {
         <div style={{
           display: "flex",
           justifyContent: "center",
-          marginTop: 48
+          marginTop: 48,
+          flexDirection: "column",
+          alignItems: "center"
         }}>
           <img style={{
-            height: 128,
-            width: 128
+            height: 144,
+            width: 144
           }} src={Icon} alt="" />
+          <div style={{marginTop: -32}} className='midium_text'>viraportal</div>
         </div>
 
         <div style={{ marginTop: 48, paddingLeft: 48, paddingRight: 48 }}>

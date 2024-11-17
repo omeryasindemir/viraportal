@@ -16,11 +16,26 @@ const Chat = () => {
   const [isReady, setisReady] = useState(false)
 
 
-  const sendMessage = () => {
+  const sendMessage = async () => {
     console.log("message sent!")
 
     console.log(userID + " / " + message)
-    
+
+
+    const obj = {
+      message: "aaa",
+      file: undefined
+    }
+
+    try {
+      const data = await chatSend(obj, userID)
+      console.log(data)
+      console.log("message Success!")
+
+    } catch (error) {
+      console.log("message Error!")
+    }
+
   }
 
 
@@ -82,7 +97,7 @@ const Chat = () => {
                 justifyContent: "center",
                 alignItems: "center"
               }}>
-                <img style={{ height: 48, width: 48 }} src={"https://i.pinimg.com/236x/d4/06/6d/d4066df9414e37e47739a84418971f36.jpg"} alt="" />
+                <img style={{ height: 48, width: 48 }} src={"https://static.vecteezy.com/system/resources/previews/009/292/244/non_2x/default-avatar-icon-of-social-media-user-vector.jpg"} alt="" />
               </div>
               <div>Kullanici Adi</div>
             </div>
