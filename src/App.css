@@ -249,7 +249,9 @@ body {
 }
 
 .chat_bottom_bar{
+    margin: 16px;
     margin-right: 24px;
+
 }
 
 @media (max-width: 1032px) {

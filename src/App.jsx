@@ -37,6 +37,8 @@ const App = () => {
       return;
     }
 
+    console.log("TOKEN : "+token)
+
     // WebSocket bağlantısı oluştur
     const ws = new WebSocket(
       `ws://localhost:3001/ws/${token}/${csrfToken}`

@@ -23,7 +23,7 @@ const Chat = () => {
 
 
     const obj = {
-      message: "aaa",
+      message: message,
       file: undefined
     }
 
@@ -117,7 +117,7 @@ const Chat = () => {
               }}>
                 <img style={{ height: 48, width: 48 }} src={"https://static.vecteezy.com/system/resources/previews/009/292/244/non_2x/default-avatar-icon-of-social-media-user-vector.jpg"} alt="" />
               </div>
-              <div>Kullanici Adi</div>
+              <div>{messageTo}</div>
             </div>
             <div style={{
               display: "flex",
@@ -128,7 +128,7 @@ const Chat = () => {
               <div><i className="bi bi-three-dots-vertical click"></i></div>
             </div>
           </div>
-          <div className='chat_bottom_bar' style={{ margin: 16, marginLeft: 24, position: "relative", display: "flex", alignItems: "center", gap: 24 }}>
+          <div className='chat_bottom_bar' style={{ marginLeft: 24, position: "relative", display: "flex", alignItems: "center", gap: 24 }}>
             <div><i className="bi bi-emoji-smile click"></i></div>
             <div><i className="bi bi-plus-lg click"></i></div>
             <div style={{ width: "100%" }}>
