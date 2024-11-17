@@ -104,7 +104,7 @@ const Chat = ({ userData, isMesGet }) => {
           console.log(mesData)
           console.log("Get Messages Success!")
 
-          setallMessages(mesData)
+          setallMessages(mesData.reverse())
 
         } catch (error) {
           console.log("Get Messages Error!")
@@ -194,7 +194,8 @@ const Chat = ({ userData, isMesGet }) => {
 
               <div>
                 {
-                  allMessages && allMessages.reverse().map((item, index) => {
+
+                  allMessages && allMessages.map((item, index) => {
 
                     const date = new Date(item.createdAt)
 
