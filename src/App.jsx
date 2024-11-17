@@ -41,7 +41,7 @@ const App = () => {
 
     // WebSocket bağlantısı oluştur
     const ws = new WebSocket(
-      `ws://viraportal.com/api/ws/${token}/${csrfToken}`
+      `wss://viraportal.com/api/ws/${token}/${csrfToken}`
     );
 
     ws.onopen = () => {
