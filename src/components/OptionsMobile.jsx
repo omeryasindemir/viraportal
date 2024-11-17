@@ -63,7 +63,7 @@ const OptionsMobile = () => {
             
           </div>
 
-          <div onClick={() => navigate("/home/chat")}  className='optsOpt click'>
+          <div onClick={() => {navigate("/home/chat"); window.location.reload()}}  className='optsOpt click'>
             <div style={{ display: "flex", gap: 16 }}>
               <i className="bi bi-chat"></i>
             </div>
