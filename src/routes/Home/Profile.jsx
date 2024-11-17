@@ -5,6 +5,7 @@ import { authOtherUserDetails } from '../../server/req/auth'
 import { userManage, userManagePP } from '../../server/req/user'
 import Loading from "../../components/Loading"
 import baseUrl from '../../server/env'
+import Banner from "../../assets/banner.jpg"
 
 const Profile = ({ userData, isOther }) => {
 
@@ -186,7 +187,7 @@ const Profile = ({ userData, isOther }) => {
       }
 
       <div style={{
-        background: "url('https://wallpapercave.com/wp/wp6432734.jpg')",
+        background: `url('${Banner}')`,
         backgroundPosition: "center",
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat"
@@ -313,12 +314,15 @@ const Profile = ({ userData, isOther }) => {
               paddingLeft: 4,
               paddingRight: 4,
               fontSize: 14,
-              borderRadius: 4
+              borderRadius: 4,
+              marginLeft: -5
             }} onChange={(e) => setuserBio(e.target.value)} className='inp' type="text" name="" id="" placeholder={userData?.biography} />
           }
 
           {
-            !isEditing && <div className='des_text' style={{ marginTop: 16 }}>{isOther ? otherUserData?.biography : userData?.biography}</div>
+            !isEditing && <div className='des_text' style={{
+              marginTop: 16
+            }}>{isOther ? otherUserData?.biography : userData?.biography}</div>
           }
 
         </div>
