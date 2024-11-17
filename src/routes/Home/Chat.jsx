@@ -2,9 +2,12 @@ import React, { useEffect, useState } from 'react'
 import { chatGet, chatSend } from '../../server/req/chat'
 import { authOtherUserDetails } from '../../server/req/auth'
 
+import ChatBg from "../../assets/chat_bg.png"
+import { useNavigate, useParams } from 'react-router-dom'
 
 const Chat = () => {
 
+  const { chatUsername } = useParams()
 
   const [message, setmessage] = useState("")
 
@@ -14,6 +17,10 @@ const Chat = () => {
   const [userID, setuserID] = useState("")
 
   const [isReady, setisReady] = useState(false)
+
+  const [allMessages, setallMessages] = useState("")
+
+  const navigate = useNavigate()
 
 
   const sendMessage = async () => {
@@ -59,12 +66,32 @@ const Chat = () => {
 
 
   useEffect(() => {
+    if (chatUsername) {
+      console.log(chatUsername)
+      setmessageTo(chatUsername)
+    }
+  },[chatUsername])
+
+
+
+  useEffect(() => {
+    if (messageTo && chatUsername) {
+      getUserID()
+    }
+  },[messageTo])
+
+
+
+  useEffect(() => {
     if (isReady) {
       const getMessages = async () => {
         try {
-          const mesData = chatGet(userID)
+          const mesData = await chatGet(userID)
           console.log(mesData)
           console.log("Get Messages Success!")
+
+          setallMessages(mesData)
+
         } catch (error) {
           console.log("Get Messages Error!")
         }
@@ -80,7 +107,7 @@ const Chat = () => {
     <div style={{ display: "flex", flexDirection: "column", gap: 16, width: "100%", maxWidth: 640 }} className='tBox'>
       <div>Devam etmek için konuşmak istediğin kişinin kullanıcı adını gir!</div>
       <input onChange={(e) => setmessageTo(e.target.value)} style={{ marginTop: 16 }} className='inp' type="text" name="" id="" placeholder='Kullanıcı Adı' />
-      <button onClick={() => getUserID()} className='Btn click'>Başla</button>
+      <button onClick={() => {navigate(`/home/chat/${messageTo}`); window.location.reload()}} className='Btn click'>Başla</button>
     </div>
   )
 
@@ -128,6 +155,35 @@ const Chat = () => {
               <div><i className="bi bi-three-dots-vertical click"></i></div>
             </div>
           </div>
+
+          <div style={{
+            flex: 1,
+            marginTop: 8,
+            borderRadius: 8,
+            position: "relative"
+          }}>
+            <div
+              style={{
+                position: "absolute",
+                height: "100%",
+                width: "100%",
+                left: 0,
+                top: 0,
+                background: "url('https://png.pngtree.com/png-vector/20221123/ourmid/pngtree-geometric-doodle-pattern-seamless-png-image_6477514.png')",
+                opacity: 0.08
+              }}
+            ></div>
+
+            <div>
+              {
+                allMessages && allMessages.map((item, index) => (
+                  <div key={index}>{item.message}</div>
+                ))
+              }
+            </div>
+
+          </div>
+
           <div className='chat_bottom_bar' style={{ marginLeft: 24, position: "relative", display: "flex", alignItems: "center", gap: 24 }}>
             <div><i className="bi bi-emoji-smile click"></i></div>
             <div><i className="bi bi-plus-lg click"></i></div>

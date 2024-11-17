@@ -37,7 +37,7 @@ const App = () => {
       return;
     }
 
-    console.log("TOKEN : "+token)
+    console.log("TOKEN : " + token)
 
     // WebSocket bağlantısı oluştur
     const ws = new WebSocket(
@@ -176,6 +176,19 @@ const App = () => {
 
       {
         isAuth && <Route path='/home/chat' element={<div style={{
+          display: "flex",
+          padding: 8,
+          minHeight: "100vh",
+          gap: 8
+        }}>
+          <Options />
+          <OptionsMobile />
+          <Chat />
+        </div>} />
+      }
+
+      {
+        isAuth && <Route path='/home/chat/:chatUsername' element={<div style={{
           display: "flex",
           padding: 8,
           minHeight: "100vh",

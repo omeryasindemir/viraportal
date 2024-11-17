@@ -74,7 +74,7 @@ const Options = () => {
             <i className="bi bi-caret-right"></i>
           </div>
 
-          <div onClick={() => navigate("/home/chat")} style={{ marginTop: 32 }} className='optsOpt click'>
+          <div onClick={() => {navigate("/home/chat"); window.location.reload()}} style={{ marginTop: 32 }} className='optsOpt click'>
             <div style={{ display: "flex", gap: 16 }}>
               <i className="bi bi-chat"></i>
               <div>Sohbet</div>
