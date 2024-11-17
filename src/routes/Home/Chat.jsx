@@ -194,7 +194,7 @@ const Chat = ({ userData, isMesGet }) => {
 
               <div>
                 {
-                  allMessages && allMessages.map((item, index) => {
+                  allMessages && allMessages.reverse().map((item, index) => {
 
                     const date = new Date(item.createdAt)
 
