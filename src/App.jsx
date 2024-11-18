@@ -84,10 +84,10 @@ const App = () => {
   useEffect(() => {
     setTimeout(() => {
       socket?.send("ping")
-      setping10(ping10+1)
+      setping10(ping10 + 1)
       console.log("Ping")
     }, 10000);
-  },[ping10])
+  }, [ping10])
 
 
   useEffect(() => {
@@ -116,155 +116,170 @@ const App = () => {
 
 
 
-  if (isLoad) {return (
-    <Routes>
+  if (isLoad) {
+    return (
+      <Routes>
 
-      {
-        !isAuth && <Route path='' element={
-          <div className="auth_body">
-            <Login />
-          </div>
-        } />
-      }
+        {
+          !isAuth && <Route path='' element={
+            <div className="auth_body">
+              <Login />
+            </div>
+          } />
+        }
 
 
-      {
-        isAuth && <Route path='' element={<div style={{
+        {
+          isAuth && <Route path='' element={<div style={{
+            display: "flex",
+            padding: 8,
+            minHeight: "100vh",
+            gap: 8
+          }}>
+            <Options />
+            <OptionsMobile />
+            <Home />
+          </div>} />
+        }
+
+
+
+        {
+          !isAuth ? <Route path='/auth/login' element={
+            <div className="auth_body">
+              <Login />
+            </div>
+          } /> : <Route path='/auth/login' element={<Loading to="/" />} />
+        }
+
+        {
+          !isAuth ? <Route path='/auth/register' element={
+            <div className="auth_body">
+              <Register />
+            </div>
+          } /> : <Route path='/auth/register' element={<Loading to="/" />} />
+        }
+
+
+
+        {
+          isAuth ? <Route path='/home/profile' element={<div style={{
+            display: "flex",
+            padding: 8,
+            minHeight: "100vh",
+            gap: 8
+          }}>
+            <Options />
+            <OptionsMobile />
+            <Profile userData={userData} isOther={false} />
+          </div>} /> : <Route path='/home/profile' element={<Loading to="/" />} />
+        }
+
+        {
+          isAuth ? <Route path='/users/:otherUsername' element={<div style={{
+            display: "flex",
+            padding: 8,
+            minHeight: "100vh",
+            gap: 8
+          }}>
+            <Options />
+            <OptionsMobile />
+            <Profile userData={userData} isOther={true} />
+          </div>} /> : <Route path='/users/:otherUsername' element={<Loading to="/" />} />
+        }
+
+
+        {
+          isAuth ? <Route path='/home/home' element={<div style={{
+            display: "flex",
+            padding: 8,
+            minHeight: "100vh",
+            gap: 8
+          }}>
+            <Options />
+            <OptionsMobile />
+            <Home />
+          </div>} /> : <Route path='/home/home' element={<Loading to="/" />} />
+        }
+
+        {
+          isAuth ? <Route path='/home/apps' element={<div style={{
+            display: "flex",
+            padding: 8,
+            maxHeight: "100vh",
+            minHeight: "100vh",
+            gap: 8
+          }}>
+            <Options />
+            <OptionsMobile />
+            <Apps />
+          </div>} /> : <Route path='/home/apps' element={<Loading to="/" />} />
+        }
+
+        <Route path='/viraportal/desktop/download' element={<div style={{
           display: "flex",
           padding: 8,
+          maxHeight: "100vh",
           minHeight: "100vh",
           gap: 8
         }}>
           <Options />
           <OptionsMobile />
-          <Home />
+          <div><a href="/viraportal_desktop" download>Viraportal Desktop'ı İndir!</a></div>
         </div>} />
-      }
+
+
+        {
+          isAuth ? <Route path='/home/chat' element={<div style={{
+            display: "flex",
+            padding: 8,
+            maxHeight: "100vh",
+            minHeight: "100vh",
+            gap: 8
+          }}>
+            <Options />
+            <OptionsMobile />
+            <Chat userData={userData} isMesGet={isMesGet} />
+          </div>} /> : <Route path='/home/chat' element={<Loading to="/" />} />
+        }
+
+        {
+          isAuth ? <Route path='/home/chat/:chatUsername' element={<div style={{
+            display: "flex",
+            padding: 8,
+            minHeight: "100vh",
+            gap: 8
+          }}>
+            <Options />
+            <OptionsMobile />
+            <Chat userData={userData} isMesGet={isMesGet} />
+          </div>} /> : <Route path='/home/chat/:chatUsername' element={<Loading to="/" />} />
+        }
 
 
 
-      {
-        !isAuth ? <Route path='/auth/login' element={
-          <div className="auth_body">
-            <Login />
+
+        <Route path='*' element={<div style={{ gap: 16 }} className='auth_body'>
+
+          <img style={{
+            height: 144,
+            width: 144
+          }} src={Icon} alt="" />
+          <div style={{
+            marginTop: -144,
+            fontSize: 83,
+            fontWeight: 600,
+            display: "flex", gap: 96
+          }}>
+            <span>4</span>
+            <span>4</span>
           </div>
-        } /> : <Route path='/auth/login' element={<Loading to="/" />} />
-      }
+          {/* <div className="typing-demo">Burada görülecek bir şey yok gibi duruyor...</div> */}
+        </div>} />
 
-      {
-        !isAuth ? <Route path='/auth/register' element={
-          <div className="auth_body">
-            <Register />
-          </div>
-        } /> : <Route path='/auth/register' element={<Loading to="/" />} />
-      }
-
-
-
-      {
-        isAuth ? <Route path='/home/profile' element={<div style={{
-          display: "flex",
-          padding: 8,
-          minHeight: "100vh",
-          gap: 8
-        }}>
-          <Options />
-          <OptionsMobile />
-          <Profile userData={userData} isOther={false} />
-        </div>} /> : <Route path='/home/profile' element={<Loading to="/" />} />
-      }
-
-      {
-        isAuth ? <Route path='/users/:otherUsername' element={<div style={{
-          display: "flex",
-          padding: 8,
-          minHeight: "100vh",
-          gap: 8
-        }}>
-          <Options />
-          <OptionsMobile />
-          <Profile userData={userData} isOther={true} />
-        </div>} /> : <Route path='/users/:otherUsername' element={<Loading to="/" />} />
-      }
-
-
-      {
-        isAuth ? <Route path='/home/home' element={<div style={{
-          display: "flex",
-          padding: 8,
-          minHeight: "100vh",
-          gap: 8
-        }}>
-          <Options />
-          <OptionsMobile />
-          <Home />
-        </div>} /> : <Route path='/home/home' element={<Loading to="/" />} />
-      }
-
-      {
-        isAuth ? <Route path='/home/apps' element={<div style={{
-          display: "flex",
-          padding: 8,
-          maxHeight: "100vh",
-          minHeight: "100vh",
-          gap: 8
-        }}>
-          <Options />
-          <OptionsMobile />
-          <Apps />
-        </div>} /> : <Route path='/home/apps' element={<Loading to="/" />} />
-      }
-
-      {
-        isAuth ? <Route path='/home/chat' element={<div style={{
-          display: "flex",
-          padding: 8,
-          maxHeight: "100vh",
-          minHeight: "100vh",
-          gap: 8
-        }}>
-          <Options />
-          <OptionsMobile />
-          <Chat userData={userData} isMesGet={isMesGet} />
-        </div>} /> : <Route path='/home/chat' element={<Loading to="/" />} />
-      }
-
-      {
-        isAuth ? <Route path='/home/chat/:chatUsername' element={<div style={{
-          display: "flex",
-          padding: 8,
-          minHeight: "100vh",
-          gap: 8
-        }}>
-          <Options />
-          <OptionsMobile />
-          <Chat userData={userData} isMesGet={isMesGet} />
-        </div>} /> : <Route path='/home/chat/:chatUsername' element={<Loading to="/" />} />
-      }
-
-
-
-
-      <Route path='*' element={<div style={{ gap: 16 }} className='auth_body'>
-
-        <img style={{
-          height: 144,
-          width: 144
-        }} src={Icon} alt="" />
-        <div style={{
-          marginTop: -144,
-          fontSize: 83,
-          fontWeight: 600,
-          display: "flex", gap: 96
-        }}>
-          <span>4</span>
-          <span>4</span>
-        </div>
-        {/* <div className="typing-demo">Burada görülecek bir şey yok gibi duruyor...</div> */}
-      </div>} />
-
-    </Routes>
-  )}
+      </Routes>
+    )
+  }
 }
 
 export default App
