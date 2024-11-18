@@ -33,6 +33,21 @@ const Chat = ({ userData, isMesGet }) => {
   const [allUsers, setallUsers] = useState([])
 
 
+  const [mostChatUsers, setmostChatUsers] = useState([])
+
+  useEffect(() => {
+    const storedItems = localStorage.getItem("mostChatUsers");
+    if (storedItems) {
+      setmostChatUsers(JSON.parse(storedItems));
+      console.log(JSON.parse(localStorage.getItem("mostChatUsers")))
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("mostChatUsers", JSON.stringify(mostChatUsers));
+  }, [mostChatUsers]);
+
+
   useEffect(() => {
     const getAllUsers = async () => {
       try {
@@ -153,7 +168,7 @@ const Chat = ({ userData, isMesGet }) => {
         !isReady && <div className='all_users_p72' style={{ width: "100%", display: "flex", justifyContent: "start", alignItems: "start", flexDirection: "column", gap: 8, overflowY: "scroll", paddingRight: 4 }}>
           {/* {demoChatWithComp()} */}
           <div className='recommended_users_container' style={{ display: "flex", alignItems: "center", justifyContent: "space-between", width: "100%" }}>
-            <div>Önerilenler</div>
+            <div>Sohbetler</div>
             <div style={{ position: "relative", width: 320 }}>
               <input style={{
                 height: 32,
@@ -176,6 +191,86 @@ const Chat = ({ userData, isMesGet }) => {
             </div>
           </div>
           <div style={{ width: "100%" }}>
+
+
+
+
+
+
+            {
+              JSON.parse(localStorage.getItem("mostChatUsers")).reverse()?.map((item, index) => {
+                const date = new Date(item.lastonline)
+                const todate = new Date()
+                const differenceInTime = todate - date;
+                const differenceInDays = Math.floor(differenceInTime / (1000 * 60 * 60 * 24));
+
+                const timeString = date.toLocaleTimeString("tr-TR", {
+                  hour: "2-digit",
+                  minute: "2-digit",
+                });
+
+                return <div key={index} style={{ display: "flex", alignItems: "center", gap: 16, justifyContent: "space-between", width: "100%", marginBottom: allUsers?.length == index + 1 ? 0 : 8 }} className='tBox'>
+
+                  <div onClick={() => {
+
+                    // setmostChatUsers((prevItems) => {
+                    //   const filteredItems = prevItems.filter((item2) => item2.username !== item.name);
+                      
+                    //   return [...filteredItems, item];
+                    // });
+
+                    const filteredItems = mostChatUsers.filter((eleman) => eleman.username !== item.username)
+                    const sonFilteredItems = [...filteredItems, item ]
+                    setmostChatUsers(sonFilteredItems)
+
+                    navigate(`/home/chat/${item?.username}`)
+                  }} className='click' style={{
+                    height: "100%",
+                    width: "100%",
+                    position: "absolute",
+                    left: 0,
+                    top: 0,
+                    borderRadius: 8
+                  }}></div>
+
+                  <div className='click' onClick={() => navigate(`/users/${item?.username}`)} style={{ display: "flex", alignItems: "start", gap: 16, zIndex: 9 }}>
+                    <div style={{
+                      height: 64,
+                      width: 64,
+                      overflow: "hidden",
+                      borderRadius: "50%",
+                      border: "1px solid var(--g53)",
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center"
+                    }}><img style={{ height: 64, width: 64 }} src={item?.profilepicture ? `${baseUrl}/images/avatars/${item?.profilepicture}` : "https://static.vecteezy.com/system/resources/previews/009/292/244/non_2x/default-avatar-icon-of-social-media-user-vector.jpg"} alt="" /></div>
+
+                    <div style={{ paddingTop: 8 }}>
+                      <div >{item?.username}</div>
+                      <div style={{ marginTop: 4 }} className='des_text'>Son aktiflik {differenceInDays == 0 ? "dün" : differenceInDays + " " + "gün önce"} {timeString}</div>
+                    </div>
+                  </div>
+
+
+                  <div style={{ display: "flex", gap: 16, alignItems: "center", paddingRight: 8 }}>
+                    {/* <div>
+                      <button style={{
+                        // background: "linear-gradient(to right, var(--g64), var(--g53))",
+                        height: 32,
+                        width: 96
+                      }} className='Btn click'>Takip Et</button>
+                    </div> */}
+                    <div className='click' style={{ zIndex: 9 }}><i className="bi bi-person-plus"></i></div>
+                  </div>
+
+                </div>
+              }
+
+              )
+            }
+
+            <div style={{padding: 32, paddingLeft: 96}}>Öneriler</div>
+
             {
               allUsers?.map((item, index) => {
                 const date = new Date(item.lastonline)
@@ -189,7 +284,20 @@ const Chat = ({ userData, isMesGet }) => {
                 });
 
                 return <div key={index} style={{ display: "flex", alignItems: "center", gap: 16, justifyContent: "space-between", width: "100%", marginBottom: allUsers?.length == index + 1 ? 0 : 8 }} className='tBox'>
-                  <div style={{ display: "flex", alignItems: "start", gap: 16 }}>
+
+                  <div onClick={() => {
+                    setmostChatUsers([...mostChatUsers, item])
+                    navigate(`/home/chat/${item?.username}`)
+                  }} className='click' style={{
+                    height: "100%",
+                    width: "100%",
+                    position: "absolute",
+                    left: 0,
+                    top: 0,
+                    borderRadius: 8
+                  }}></div>
+
+                  <div className='click' onClick={() => navigate(`/users/${item?.username}`)} style={{ display: "flex", alignItems: "start", gap: 16, zIndex: 9 }}>
                     <div style={{
                       height: 64,
                       width: 64,
@@ -202,8 +310,8 @@ const Chat = ({ userData, isMesGet }) => {
                     }}><img style={{ height: 64, width: 64 }} src={item?.profilepicture ? `${baseUrl}/images/avatars/${item?.profilepicture}` : "https://static.vecteezy.com/system/resources/previews/009/292/244/non_2x/default-avatar-icon-of-social-media-user-vector.jpg"} alt="" /></div>
 
                     <div style={{ paddingTop: 8 }}>
-                      <div onClick={() => navigate(`/users/${item?.username}`)} className='click'>{item?.username}</div>
-                      <div style={{ marginTop: 4 }} className='des_text'>Son aktiflik {differenceInDays == 0 ? "dün" : differenceInDays+" "+"gün önce"} {timeString}</div>
+                      <div >{item?.username}</div>
+                      <div style={{ marginTop: 4 }} className='des_text'>Son aktiflik {differenceInDays == 0 ? "dün" : differenceInDays + " " + "gün önce"} {timeString}</div>
                     </div>
                   </div>
 
@@ -216,7 +324,7 @@ const Chat = ({ userData, isMesGet }) => {
                         width: 96
                       }} className='Btn click'>Takip Et</button>
                     </div> */}
-                    <div><i className="bi bi-chat click"></i></div>
+                    <div className='click' style={{ zIndex: 9 }}><i className="bi bi-person-plus"></i></div>
                   </div>
 
                 </div>
