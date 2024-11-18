@@ -45,7 +45,7 @@ const App = () => {
 
     // WebSocket bağlantısı oluştur
     const ws = new WebSocket(
-      `wss://viraportal.com/api/ws/${token}/${csrfToken}`
+      `ws://localhost:3001/ws/${token}/${csrfToken}`
     );
 
     ws.onopen = () => {
@@ -68,9 +68,9 @@ const App = () => {
     };
 
     // Cleanup: Bileşen unmount olursa bağlantıyı kapat
-    return () => {
-      ws.close();
-    };
+    // return () => {
+    //   ws.close();
+    // };
   }, []);
 
 
