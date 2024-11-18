@@ -310,6 +310,13 @@ body {
     max-height: calc(100vh - 180px);
 }
 
+
+@media (max-width: 1500px) {
+    .apps_container{
+        flex-direction: column;
+    }
+}
+
 @media (max-width: 1032px) {
     .main_opt_bar {
         display: none;

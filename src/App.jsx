@@ -193,6 +193,7 @@ const App = () => {
         isAuth ? <Route path='/home/apps' element={<div style={{
           display: "flex",
           padding: 8,
+          maxHeight: "100vh",
           minHeight: "100vh",
           gap: 8
         }}>
