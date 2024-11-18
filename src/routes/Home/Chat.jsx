@@ -247,7 +247,7 @@ const Chat = ({ userData, isMesGet }) => {
 
                     <div style={{ paddingTop: 8 }}>
                       <div >{item?.username}</div>
-                      <div style={{ marginTop: 4 }} className='des_text'>Son aktiflik {differenceInDays == 0 ? "dün" : differenceInDays + " " + "gün önce"} {timeString}</div>
+                      <div style={{ marginTop: 4 }} className='des_text'>Son aktiflik {differenceInDays == 0 ? "bugün" : differenceInDays == 1 ? "dün" : differenceInDays + " " + "gün önce"} {timeString}</div>
                     </div>
                   </div>
 
@@ -311,7 +311,7 @@ const Chat = ({ userData, isMesGet }) => {
 
                     <div style={{ paddingTop: 8 }}>
                       <div >{item?.username}</div>
-                      <div style={{ marginTop: 4 }} className='des_text'>Son aktiflik {differenceInDays == 0 ? "dün" : differenceInDays + " " + "gün önce"} {timeString}</div>
+                      <div style={{ marginTop: 4 }} className='des_text'>Son aktiflik {differenceInDays == 0 ? "bugün" : differenceInDays == 1 ? "dün" : differenceInDays + " " + "gün önce"} {timeString}</div>
                     </div>
                   </div>
 
