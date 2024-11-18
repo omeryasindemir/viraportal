@@ -13,6 +13,7 @@ import Home from "./routes/Home/Home"
 import Chat from "./routes/Home/Chat"
 import WebSocketComponent from './demo/WebSocketComponent'
 import authToken from './server/authToken'
+import Apps from './routes/Home/Apps'
 
 const App = () => {
 
@@ -176,6 +177,19 @@ const App = () => {
           <Options />
           <OptionsMobile />
           <Home />
+        </div>} />
+      }
+
+      {
+        isAuth && <Route path='/home/apps' element={<div style={{
+          display: "flex",
+          padding: 8,
+          minHeight: "100vh",
+          gap: 8
+        }}>
+          <Options />
+          <OptionsMobile />
+          <Apps />
         </div>} />
       }
 
