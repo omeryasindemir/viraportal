@@ -334,6 +334,10 @@ body {
     .chat_main{
         max-height: calc(100vh - 236px);
     }
+
+    .apps_container{
+        margin-bottom: 72px;
+    }
 }
 
 
