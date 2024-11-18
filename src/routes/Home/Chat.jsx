@@ -269,7 +269,7 @@ const Chat = ({ userData, isMesGet }) => {
               )
             }
 
-            <div style={{padding: 32, paddingLeft: 96}}>Öneriler</div>
+            <div className='ta_rec_text' style={{padding: 32}}>Öneriler</div>
 
             {
               allUsers?.map((item, index) => {

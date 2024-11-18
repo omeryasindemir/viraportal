@@ -316,7 +316,9 @@ body {
     padding-right: 48px;
 }
 
-
+.ta_rec_text{
+    padding-left: 96px;
+}
 
 @media (max-width: 1500px) {
     .apps_container{
@@ -375,6 +377,11 @@ body {
         padding-left: 16px;
         padding-right: 16px;
         gap: 24px;
+    }
+
+    .ta_rec_text{
+        text-align: center;
+        padding-left: 0px;
     }
 
 }
