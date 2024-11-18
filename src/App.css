@@ -316,6 +316,8 @@ body {
     padding-right: 48px;
 }
 
+
+
 @media (max-width: 1500px) {
     .apps_container{
         flex-direction: column;
@@ -341,6 +343,10 @@ body {
     }
 
     .apps_container{
+        margin-bottom: 72px;
+    }
+
+    .all_users_p72{
         margin-bottom: 72px;
     }
 }
