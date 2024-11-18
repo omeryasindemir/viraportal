@@ -8,8 +8,10 @@ const Loading = ({message, to}) => {
 
 
   useEffect(() => {
-    if (to == "/") {
-      navigate("/")
+    if (to) {
+      setTimeout(() => {
+        navigate(to)
+      }, 320);
     }
   },[to])
   
