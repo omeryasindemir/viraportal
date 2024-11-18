@@ -200,14 +200,25 @@ const Chat = ({ userData, isMesGet }) => {
             {
               JSON.parse(localStorage.getItem("mostChatUsers"))?.reverse().map((item, index) => {
                 const date = new Date(item.lastonline)
-                const todate = new Date()
-                const differenceInTime = todate - date;
-                const differenceInDays = Math.floor(differenceInTime / (1000 * 60 * 60 * 24));
 
                 const timeString = date.toLocaleTimeString("tr-TR", {
                   hour: "2-digit",
                   minute: "2-digit",
                 });
+
+
+
+                
+
+                const givenDate = date;
+                const today = new Date();
+
+                const givenDateOnly = new Date(givenDate.getFullYear(), givenDate.getMonth(), givenDate.getDate());
+                const todayOnly = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+
+                const differenceInTime = todayOnly - givenDateOnly;
+                const differenceInDays = differenceInTime / (1000 * 60 * 60 * 24);
+
 
                 return <div key={index} style={{ display: "flex", alignItems: "center", gap: 16, justifyContent: "space-between", width: "100%", marginBottom: allUsers?.length == index + 1 ? 0 : 8 }} className='tBox'>
 
@@ -215,12 +226,12 @@ const Chat = ({ userData, isMesGet }) => {
 
                     // setmostChatUsers((prevItems) => {
                     //   const filteredItems = prevItems.filter((item2) => item2.username !== item.name);
-                      
+
                     //   return [...filteredItems, item];
                     // });
 
                     const filteredItems = mostChatUsers.filter((eleman) => eleman.username !== item.username)
-                    const sonFilteredItems = [...filteredItems, item ]
+                    const sonFilteredItems = [...filteredItems, item]
                     setmostChatUsers(sonFilteredItems)
 
                     navigate(`/home/chat/${item?.username}`)
@@ -274,14 +285,26 @@ const Chat = ({ userData, isMesGet }) => {
             {
               allUsers?.map((item, index) => {
                 const date = new Date(item.lastonline)
-                const todate = new Date()
-                const differenceInTime = todate - date;
-                const differenceInDays = Math.floor(differenceInTime / (1000 * 60 * 60 * 24));
 
                 const timeString = date.toLocaleTimeString("tr-TR", {
                   hour: "2-digit",
                   minute: "2-digit",
                 });
+
+
+
+
+
+                const givenDate = date;
+                const today = new Date();
+
+                const givenDateOnly = new Date(givenDate.getFullYear(), givenDate.getMonth(), givenDate.getDate());
+                const todayOnly = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+
+                const differenceInTime = todayOnly - givenDateOnly;
+                const differenceInDays = differenceInTime / (1000 * 60 * 60 * 24);
+
+
 
                 return <div key={index} style={{ display: "flex", alignItems: "center", gap: 16, justifyContent: "space-between", width: "100%", marginBottom: allUsers?.length == index + 1 ? 0 : 8 }} className='tBox'>
 
