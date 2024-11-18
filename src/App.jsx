@@ -24,6 +24,7 @@ const App = () => {
 
 
   const [socket, setSocket] = useState(null);
+  const [ping10, setping10] = useState(0)
 
 
   const [isMesGet, setisMesGet] = useState("")
@@ -50,6 +51,7 @@ const App = () => {
     // WebSocket bağlantısı oluştur
     const ws = new WebSocket(
       `wss://viraportal.com/api/ws/${token}/${csrfToken}`
+      //`ws://localhost:3001/ws/${token}/${csrfToken}`
     );
 
     ws.onopen = () => {
@@ -76,6 +78,16 @@ const App = () => {
     //   ws.close();
     // };
   }, []);
+
+
+
+  useEffect(() => {
+    setTimeout(() => {
+      socket?.send("ping")
+      setping10(ping10+1)
+      console.log("Ping")
+    }, 10000);
+  },[ping10])
 
 
   useEffect(() => {
