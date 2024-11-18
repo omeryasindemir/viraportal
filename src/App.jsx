@@ -216,7 +216,7 @@ const App = () => {
           </div>} /> : <Route path='/home/apps' element={<Loading to="/" />} />
         }
 
-        <Route path='/viraportal/desktop/download' element={<div style={{
+        {/* <Route path='/viraportal/desktop/download' element={<div style={{
           display: "flex",
           padding: 8,
           maxHeight: "100vh",
@@ -226,7 +226,7 @@ const App = () => {
           <Options />
           <OptionsMobile />
           <div><a href="/viraportal_desktop" download>Viraportal Desktop'ı İndir!</a></div>
-        </div>} />
+        </div>} /> */}
 
 
         {
