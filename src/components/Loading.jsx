@@ -1,7 +1,18 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Loader from "../assets/loader.svg"
+import { useNavigate } from 'react-router-dom'
 
-const Loading = ({message}) => {
+const Loading = ({message, to}) => {
+
+  const navigate = useNavigate()
+
+
+  useEffect(() => {
+    if (to == "/") {
+      navigate("/")
+    }
+  },[to])
+  
   return (
     <div style={{
         position: "fixed",

@@ -29,6 +29,9 @@ const App = () => {
   const [isMesGet, setisMesGet] = useState("")
 
 
+  const [isLoad, setisLoad] = useState(false)
+
+
   useEffect(() => {
     const token = document.cookie
       .split("; ")
@@ -85,9 +88,11 @@ const App = () => {
         setuserData(data)
 
         setisAuth(true)
+        setisLoad(true)
 
       } catch (error) {
         console.log("Auth Error!")
+        setisLoad(true)
       }
     }
 
@@ -95,7 +100,11 @@ const App = () => {
   }, [])
 
 
-  return (
+
+
+
+
+  if (isLoad) {return (
     <Routes>
 
       {
@@ -123,11 +132,11 @@ const App = () => {
 
 
       {
-        !isAuth && <Route path='/auth/login' element={
+        !isAuth ? <Route path='/auth/login' element={
           <div className="auth_body">
             <Login />
           </div>
-        } />
+        } /> : <Route path='/auth/login' element={<Loading to="/" />} />
       }
 
       {
@@ -241,7 +250,7 @@ const App = () => {
       </div>} />
 
     </Routes>
-  )
+  )}
 }
 
 export default App
