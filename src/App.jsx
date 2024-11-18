@@ -50,8 +50,8 @@ const App = () => {
 
     // WebSocket bağlantısı oluştur
     const ws = new WebSocket(
-      `wss://viraportal.com/api/ws/${token}/${csrfToken}`
-      //`ws://localhost:3001/ws/${token}/${csrfToken}`
+      //`wss://viraportal.com/api/ws/${token}/${csrfToken}`
+      `ws://localhost:3001/ws/${token}/${csrfToken}`
     );
 
     ws.onopen = () => {

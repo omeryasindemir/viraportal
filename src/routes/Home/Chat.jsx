@@ -4,6 +4,7 @@ import { authOtherUserDetails } from '../../server/req/auth'
 
 import ChatBg from "../../assets/chat_bg.png"
 import { useNavigate, useParams } from 'react-router-dom'
+import { usersTotal } from '../../server/req/user'
 
 const Chat = ({ userData, isMesGet }) => {
 
@@ -28,10 +29,29 @@ const Chat = ({ userData, isMesGet }) => {
   const navigate = useNavigate()
 
 
+
+
+
+  useEffect(() => {
+    const getAllUsers = async () => {
+      try {
+        const data = await usersTotal()
+        console.log(data)
+        console.log("Get All Users Success!")
+      } catch (error) {
+        console.log("Get All Users Error!")
+      }
+    }
+    getAllUsers()
+  }, [])
+
+
+
+
   useEffect(() => {
     console.log("geldi")
     setmesChange(mesChange + 1)
-  },[isMesGet])
+  }, [isMesGet])
 
 
   const sendMessage = async () => {
@@ -128,9 +148,68 @@ const Chat = ({ userData, isMesGet }) => {
   return (
     <>
       {
-        !isReady && <div style={{ width: "100%", display: "flex", justifyContent: "center", alignItems: "center" }}>
-          {demoChatWithComp()}
+        !isReady && <div style={{ width: "100%", display: "flex", justifyContent: "start", alignItems: "start", flexDirection: "column", gap: 8 }}>
+          {/* {demoChatWithComp()} */}
+          <div className='recommended_users_container' style={{ display: "flex", alignItems: "center", justifyContent: "space-between", width: "100%" }}>
+            <div>Önerilenler</div>
+            <div style={{position: "relative", width: 320}}>
+              <input style={{
+                height: 32,
+                paddingLeft: 12,
+                paddingRight: 12,
+                background: "linear-gradient(to right, var(--g24), var(--g16))"
+              }} className='inp' type="text" name="" id="" placeholder='Bir kullanıcı aratın!' />
+              <div style={{
+                color: "var(--g64)",
+                height: 32,
+                width: 32,
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                position: "absolute",
+                right: 0,
+                top: 0,
+                borderRadius: "0px 8px 8px 0px"
+              }} className='des_text'><i className="bi bi-search"></i></div>
+            </div>
+          </div>
+          <div style={{ width: "100%" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 16, justifyContent: "space-between", width: "100%" }} className='tBox'>
+              <div style={{ display: "flex", alignItems: "start", gap: 16 }}>
+                <div style={{
+                  height: 64,
+                  width: 64,
+                  overflow: "hidden",
+                  borderRadius: "50%",
+                  border: "1px solid var(--g53)",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center"
+                }}><img style={{ height: 64, width: 64 }} src="https://static.vecteezy.com/system/resources/previews/009/292/244/non_2x/default-avatar-icon-of-social-media-user-vector.jpg" alt="" /></div>
+
+                <div style={{ paddingTop: 8 }}>
+                  <div>İsim Soyisim</div>
+                  <div style={{ marginTop: 4 }} className='des_text'>kullanici</div>
+                </div>
+              </div>
+
+
+              <div style={{ display: "flex", gap: 16, alignItems: "center" }}>
+                <div>
+                  <button style={{
+                    // background: "linear-gradient(to right, var(--g64), var(--g53))",
+                    height: 32,
+                    width: 96
+                  }} className='Btn click'>Takip Et</button>
+                </div>
+                <div><i className="bi bi-chat click"></i></div>
+              </div>
+
+            </div>
+          </div>
         </div>
+
+
       }
 
       {
@@ -223,7 +302,7 @@ const Chat = ({ userData, isMesGet }) => {
                             marginTop: -22
                           }}><i className="bi bi-check-all"></i></div>
                         }
-                        <div style={{marginTop: 2, paddingLeft: 4}} className='des_text'>{timeString}</div>
+                        <div style={{ marginTop: 2, paddingLeft: 4 }} className='des_text'>{timeString}</div>
                       </div>
                     </div>
                   })

@@ -43,3 +43,25 @@ export const userManagePP = async (data) => {
     throw error;
   }
 };
+
+
+// Total Users
+export const usersTotal = async () => {
+  try {
+    const response = await fetch(`${baseUrl}/users/all?page=0`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'csrf-token': localStorage.getItem(authToken),
+      },
+      credentials: 'include'
+    });
+    if (!response.ok) {
+      throw new Error('Error!');
+    }
+    return await response.json();
+  } catch (error) {
+    console.error("Error!", error);
+    throw error;
+  }
+};

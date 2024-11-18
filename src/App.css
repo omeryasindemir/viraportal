@@ -310,6 +310,11 @@ body {
     max-height: calc(100vh - 180px);
 }
 
+.recommended_users_container{
+    padding: 16px;
+    padding-left: 96px;
+    padding-right: 48px;
+}
 
 @media (max-width: 1500px) {
     .apps_container{
@@ -358,5 +363,12 @@ body {
         margin-top: 48px;
     }
 
+
+    .recommended_users_container{
+        flex-direction: column;
+        padding-left: 16px;
+        padding-right: 16px;
+        gap: 24px;
+    }
 
 }
