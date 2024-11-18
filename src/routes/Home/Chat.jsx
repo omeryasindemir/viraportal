@@ -198,7 +198,7 @@ const Chat = ({ userData, isMesGet }) => {
 
 
             {
-              JSON.parse(localStorage.getItem("mostChatUsers")).reverse()?.map((item, index) => {
+              JSON.parse(localStorage.getItem("mostChatUsers"))?.reverse().map((item, index) => {
                 const date = new Date(item.lastonline)
                 const todate = new Date()
                 const differenceInTime = todate - date;
