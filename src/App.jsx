@@ -140,17 +140,17 @@ const App = () => {
       }
 
       {
-        !isAuth && <Route path='/auth/register' element={
+        !isAuth ? <Route path='/auth/register' element={
           <div className="auth_body">
             <Register />
           </div>
-        } />
+        } /> : <Route path='/auth/register' element={<Loading to="/" />} />
       }
 
 
 
       {
-        isAuth && <Route path='/home/profile' element={<div style={{
+        isAuth ? <Route path='/home/profile' element={<div style={{
           display: "flex",
           padding: 8,
           minHeight: "100vh",
@@ -159,11 +159,11 @@ const App = () => {
           <Options />
           <OptionsMobile />
           <Profile userData={userData} isOther={false} />
-        </div>} />
+        </div>} /> : <Route path='/home/profile' element={<Loading to="/" />} />
       }
 
       {
-        isAuth && <Route path='/users/:otherUsername' element={<div style={{
+        isAuth ? <Route path='/users/:otherUsername' element={<div style={{
           display: "flex",
           padding: 8,
           minHeight: "100vh",
@@ -172,12 +172,12 @@ const App = () => {
           <Options />
           <OptionsMobile />
           <Profile userData={userData} isOther={true} />
-        </div>} />
+        </div>} /> : <Route path='/users/:otherUsername' element={<Loading to="/" />} />
       }
 
 
       {
-        isAuth && <Route path='/home/home' element={<div style={{
+        isAuth ? <Route path='/home/home' element={<div style={{
           display: "flex",
           padding: 8,
           minHeight: "100vh",
@@ -186,11 +186,11 @@ const App = () => {
           <Options />
           <OptionsMobile />
           <Home />
-        </div>} />
+        </div>} /> : <Route path='/home/home' element={<Loading to="/" />} />
       }
 
       {
-        isAuth && <Route path='/home/apps' element={<div style={{
+        isAuth ? <Route path='/home/apps' element={<div style={{
           display: "flex",
           padding: 8,
           minHeight: "100vh",
@@ -199,11 +199,11 @@ const App = () => {
           <Options />
           <OptionsMobile />
           <Apps />
-        </div>} />
+        </div>} /> : <Route path='/home/apps' element={<Loading to="/" />} />
       }
 
       {
-        isAuth && <Route path='/home/chat' element={<div style={{
+        isAuth ? <Route path='/home/chat' element={<div style={{
           display: "flex",
           padding: 8,
           minHeight: "100vh",
@@ -212,11 +212,11 @@ const App = () => {
           <Options />
           <OptionsMobile />
           <Chat userData={userData} isMesGet={isMesGet} />
-        </div>} />
+        </div>} /> : <Route path='/home/chat' element={<Loading to="/" />} />
       }
 
       {
-        isAuth && <Route path='/home/chat/:chatUsername' element={<div style={{
+        isAuth ? <Route path='/home/chat/:chatUsername' element={<div style={{
           display: "flex",
           padding: 8,
           minHeight: "100vh",
@@ -225,7 +225,7 @@ const App = () => {
           <Options />
           <OptionsMobile />
           <Chat userData={userData} isMesGet={isMesGet} />
-        </div>} />
+        </div>} /> : <Route path='/home/chat/:chatUsername' element={<Loading to="/" />} />
       }
 
 
