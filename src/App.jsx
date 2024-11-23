@@ -14,6 +14,7 @@ import Chat from "./routes/Home/Chat"
 import WebSocketComponent from './demo/WebSocketComponent'
 import authToken from './server/authToken'
 import Apps from './routes/Home/Apps'
+import ViraShopApp from "./apps/ViraShopApp"
 
 const App = () => {
 
@@ -214,6 +215,20 @@ const App = () => {
             <OptionsMobile />
             <Apps />
           </div>} /> : <Route path='/home/apps' element={<Loading to="/" />} />
+        }
+
+        {
+          isAuth ? <Route path='/home/apps/virashop' element={<div style={{
+            display: "flex",
+            padding: 8,
+            maxHeight: "100vh",
+            minHeight: "100vh",
+            gap: 8
+          }}>
+            <Options />
+            <OptionsMobile />
+            <ViraShopApp />
+          </div>} /> : <Route path='/home/apps/virashop' element={<Loading to="/" />} />
         }
 
         {/* <Route path='/viraportal/desktop/download' element={<div style={{

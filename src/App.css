@@ -61,6 +61,7 @@
     font-family: "Quicksand", sans-serif;
 
     outline: none;
+
 }
 
 *::selection {
@@ -321,6 +322,15 @@ body {
     padding-left: 96px;
 }
 
+.virashop_image_container{
+    height: calc(100vh - 183px);
+}
+
+.virashop_image_img{
+    height: 100%;
+    width: auto;
+}
+
 @media (max-width: 1500px) {
     .apps_container{
         flex-direction: column;
@@ -351,6 +361,10 @@ body {
 
     .all_users_p72{
         margin-bottom: 72px;
+    }
+
+    .virashop_image_container{
+        height: calc(100vh - 256px);
     }
 }
 
@@ -383,6 +397,11 @@ body {
     .ta_rec_text{
         text-align: center;
         padding-left: 0px;
+    }
+
+    .virashop_image_img{
+        height: auto;
+        width: 100%;
     }
 
 }
