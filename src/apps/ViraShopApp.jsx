@@ -1,14 +1,20 @@
 import React, { useState } from 'react';
+import Loading from "../components/Loading"
 
 function ViraShopApp() {
   const [background, setBackground] = useState(null);
   const [pattern, setPattern] = useState(null);
   const [result, setResult] = useState(null);
 
+  const [isProccess, setisProccess] = useState(false)
+
   const handleBackgroundChange = (e) => setBackground(e.target.files[0]);
   const handlePatternChange = (e) => setPattern(e.target.files[0]);
 
   const handleSubmit = async () => {
+
+    setisProccess(true)
+
     const formData = new FormData();
     formData.append('background', background);
     formData.append('pattern', pattern);
@@ -21,6 +27,7 @@ function ViraShopApp() {
       if (!response.ok) throw new Error('Görsel işlenirken hata oluştu');
       const blob = await response.blob();
       setResult(URL.createObjectURL(blob));
+      setisProccess(false)
     } catch (err) {
       console.error('Hata:', err);
       alert('Bir hata oluştu: ' + err.message);
@@ -29,6 +36,10 @@ function ViraShopApp() {
 
   return (
     <div className='all_users_p72' style={{ display: "flex", flexDirection: "column", gap: 8, width: "100%", overflowY: "scroll", borderRadius: 8 }}>
+
+      {
+        isProccess && <Loading/>
+      }
 
       <div style={{
         display: "flex",
